@@ -27,16 +27,16 @@ html {
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
+    'Segoe UI',
     Roboto,
-    "Helvetica Neue",
+    'Helvetica Neue',
     Arial,
-    "Noto Sans",
+    'Noto Sans',
     sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 body {
@@ -62,19 +62,111 @@ html {
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
+    'Segoe UI',
     Roboto,
-    "Helvetica Neue",
+    'Helvetica Neue',
     Arial,
-    "Noto Sans",
+    'Noto Sans',
     sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 body {
   padding: 0;
   line-height: inherit;
+}
+
+/* - Links */
+a {
+  color: #fff;
+  text-decoration: underline;
+  outline: none;
+}
+
+a:hover {
+  text-decoration: none;
+  /* color: #68e0cf; */
+}
+
+/* - Buttons */
+.animated-button {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 16px;
+}
+
+.animated-button span {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-shadow: 0 16px 0 #68e0cf;
+}
+
+.animated-button span em {
+  min-width: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  font-style: normal;
+  backface-visibility: hidden;
+  transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+}
+
+.animated-button span em:nth-child(1) {
+  transition-delay: 0.025s;
+}
+
+.animated-button span em:nth-child(2) {
+  transition-delay: 0.05s;
+}
+
+.animated-button span em:nth-child(3) {
+  transition-delay: 0.075s;
+}
+
+.animated-button span em:nth-child(4) {
+  transition-delay: 0.1s;
+}
+
+.animated-button span em:nth-child(5) {
+  transition-delay: 0.125s;
+}
+
+.animated-button span em:nth-child(6) {
+  transition-delay: 0.15s;
+}
+
+.animated-button span em:nth-child(7) {
+  transition-delay: 0.175s;
+}
+
+.animated-button span em:nth-child(8) {
+  transition-delay: 0.2s;
+}
+
+.animated-button span em:nth-child(9) {
+  transition-delay: 0.225s;
+}
+
+.animated-button span em:nth-child(10) {
+  transition-delay: 0.25s;
+}
+
+.animated-button span em:nth-child(11) {
+  transition-delay: 0.275s;
+}
+
+a:hover .animated-button em {
+  transform: translateY(calc(16px * -1));
 }

@@ -1,0 +1,672 @@
+# From greenfield to minefield and back
+
+## The dream
+
+Imagine starting on a fresh project, there is no legacy, there is no one to blame it is up to you and your team to build this state of the art project. And as months go by and new colleagues join they will open the project read through the code and stop every 5 minutes to admire what you’ve wrote.
+
+import Image3 from '~/media/from-greenfield-to-minefield/Slide3.jpeg?jsx';
+
+<p align="center">
+  <Image3 />
+</p>
+
+## The result
+
+Yeah, unfortunately this is not case but maybe it will be for you with the advices I give. Lets go through the timeline of the project together and see where things might go wrong.
+
+import Image4 from '~/media/from-greenfield-to-minefield/Slide4.jpeg?jsx';
+
+<p align="center">
+  <Image4 />
+</p>
+
+## DISCLAIMER
+
+import Image5 from '~/media/from-greenfield-to-minefield/Slide5.jpeg?jsx';
+
+<p align="center">
+	<Image5 />
+</p>
+```ts
+let derka = () => {
+	console.log('derka');
+}
+```
+
+This is not a step by step guide or a recipe for how to build and scale a project from scratch. In this talk a will tell you the story of our journey so far. What are some key decisions that we made, what are the problems that we stumbled upon and how we tackled them. I’ll go in depth about the more technical parts. I would also cover some of the more architectural topics and a lot of them are polarizing so I’ll not give statements and tell you which is best but will be more pc and try to give a more philosophical view and point in the direction in which you should think about when ?solving them.
+
+## Project timeline
+
+import Image6 from '~/media/from-greenfield-to-minefield/Slide6.jpeg?jsx';
+
+<p align="center">
+  <Image6 />
+</p>
+
+Choosing a framework
+
+---
+
+The team was set. Building the foundation. First major decision
+
+### About frameworks
+
+> “…web dev is a pop culture with no regard for history\, dooming each successive generation to repeat the blunders of the old\, in a cycle of garbage software\, wrapped in ever\-escalating useless animations\, transitions\, and framework rewrites\.”
+
+---
+
+The framework is just a tool which helps you get the job done. Think about what suits better the business case and helps you build the features that you need. It is easier learning new framework then making the wrong framework fit your case. Moreover I can guarantee you there will be a new sexier framework in the next years. Svelte is already rising and gaining followers.
+
+### Choosing a testing framework
+
+The team grew. We had a product team. The product team together with some developers went to visit our facilities in the states. A devops team was formed. Shortly after that I joind. We picking up the pace. We wanted to have good code coverage
+Another key decision early on was about the testing framework.
+
+![](img/From-greenfield8.png)
+
+### The Karma you get for not using Jest
+
+![](img/From-greenfield9.png)
+
+![](img/From-greenfield10.png)
+
+Runs in the browser
+
+Runs inside command line
+
+Uses real browser
+
+---
+
+![](img/From-greenfield11.jpg)
+
+---
+
+Just a minute on that topic. In my years of experience I see that often tests are often neglected!!!!!!!!!…………………
+I’ve also been there done that. It becomes ugly after a while. Not gonna state the benefits of tests.
+But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where testing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests. 
+And it is never too late to set the tests and start covering old functionality together with the new one. I’ve also done that.
+57,11
+
+#
+
+![](img/From-greenfield12.png)
+
+![](img/From-greenfield13.png)
+
+![](img/From-greenfield14.png)
+
+![](img/From-greenfield15.png)
+
+Monorepo
+
+Vs
+
+Polyreop
+
+![](img/From-greenfield16.png)
+
+![](img/From-greenfield17.png)
+
+---
+
+The Sofia team continued growing. We had two fully functional teams. We started working on a new part of the product . We had to add another project
+From the beginning we used monorepo for the BE.
+
+Smart, Extensible Build Framework
+
+52,86
+
+### Single library
+
+---
+
+The two projects were mostly different but had some shared components so we create a shared library. There we would put shared angular components, some common validators, some testing utils ,etc.. nothing much. And this is where we buried the first mine
+
+25,92
+
+### Nx configuration
+
+nx\.json
+
+\{ <span style="color:#CC7832">…</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"</span> <span style="color:#9876AA">implicitDependencies</span> <span style="color:#9876AA">"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"</span> <span style="color:#9876AA">angular\.json</span> <span style="color:#9876AA">"</span> <span style="color:#CC7832">: </span> <span style="color:#6A8759">"\*"</span> <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> …</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"\.</span> <span style="color:#9876AA">eslintrc\.json</span> <span style="color:#9876AA">"</span> <span style="color:#CC7832">: </span> <span style="color:#6A8759">"\*"</span> <span style="color:#CC7832">\,</span> <span style="color:#6A8759"> </span> \} <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"projects"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"patient\-portal"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"tags"</span> <span style="color:#CC7832">: </span> \[\] \} <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"staff\-portal"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"tags"</span> <span style="color:#CC7832">: </span> \[\] \} <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"logging"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"tags"</span> <span style="color:#CC7832">: </span> \[\] \} <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> </span> <span style="color:#9876AA">"</span> <span style="color:#9876AA">refmd</span> <span style="color:#9876AA">\-portal"</span> <span style="color:#CC7832">: </span> \{ <span style="color:#9876AA">"tags"</span> <span style="color:#CC7832">: </span> \[\] \} <span style="color:#CC7832">\,</span> <span style="color:#CC7832"> …</span>
+
+\.eslintrc\.json
+
+<span style="color:#9876AA">"@</span>  <span style="color:#9876AA">nrwl</span>  <span style="color:#9876AA">/</span>  <span style="color:#9876AA">nx</span>  <span style="color:#9876AA">/enforce\-module\-boundaries"</span>  <span style="color:#CC7832">: </span> \[   <span style="color:#6A8759">"error"</span>  <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span> \{     <span style="color:#9876AA">"</span>  <span style="color:#9876AA">enforceBuildableLibDependency</span>  <span style="color:#9876AA">"</span>  <span style="color:#CC7832">: true\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">"allow"</span>  <span style="color:#CC7832">: </span> \[\] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">"</span>  <span style="color:#9876AA">depConstraints</span>  <span style="color:#9876AA">"</span>  <span style="color:#CC7832">: </span> \[      \{         <span style="color:#9876AA">"</span>  <span style="color:#9876AA">sourceTag</span>  <span style="color:#9876AA">"</span>  <span style="color:#CC7832">: </span>  <span style="color:#6A8759">"\*"</span>  <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">        </span>  <span style="color:#9876AA">"</span>  <span style="color:#9876AA">onlyDependOnLibsWithTags</span>  <span style="color:#9876AA">"</span>  <span style="color:#CC7832">: </span> \[ <span style="color:#6A8759">"\*"</span> \]      \}    \]  \}\]
+
+![](img/From-greenfield18.png)
+
+---
+
+39,35
+
+### Tests setup
+
+![](img/From-greenfield19.png)
+
+<span style="color:#9876AA"> _beforeEach_ </span> \( <span style="color:#CC7832">async </span> \(\) => \{   <span style="color:#CC7832">await </span>  <span style="color:#9876AA"> _TestBed_ </span> \. <span style="color:#FFC66D">configureTestingModule</span> \(\{     <span style="color:#9876AA">imports</span> : \[RouterTestingModule <span style="color:#CC7832">\, </span>  __MatMenuModule__  <span style="color:#CC7832">\, 	</span>  __MatToolbarModule__ \] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">declarations</span> : \[WelcomeComponent <span style="color:#CC7832">\, </span>  __AvatarComponent__ \] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">providers</span> : \[TestUtil\. <span style="color:#FFC66D"> _provideMocked_ </span> \(UserService\)\] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span> \}\)\. <span style="color:#FFC66D">compileComponents</span> \(\) <span style="color:#CC7832">;</span> \}\) <span style="color:#CC7832">;</span>
+
+<span style="color:#9876AA"> _beforeEach_ </span> \( <span style="color:#CC7832">async </span> \(\) => \{   <span style="color:#CC7832">await </span>  <span style="color:#9876AA"> _TestBed_ </span> \. <span style="color:#FFC66D">configureTestingModule</span> \(\{     <span style="color:#9876AA">imports</span> : \[ __SharedModule__  <span style="color:#CC7832">\, </span> RouterTestingModule\] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">declarations</span> : \[WelcomeComponent\] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">    </span>  <span style="color:#9876AA">providers</span> : \[TestUtil\. <span style="color:#FFC66D"> _provideMocked_ </span> \(UserService\)\] <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span> \}\)\. <span style="color:#FFC66D">compileComponents</span> \(\) <span style="color:#CC7832">;</span> \}\) <span style="color:#CC7832">;</span>
+
+![](img/From-greenfield20.png)
+
+![](img/From-greenfield21.png)
+
+---
+
+I know I had that big mantra earlier but first let me explain
+Integration tests between components
+
+01:36,89
+
+![](img/From-greenfield22.png)
+
+### Key takeaways
+
+---
+
+19,00
+
+###
+
+![](img/From-greenfield23.png)
+
+![](img/From-greenfield24.png)
+
+![](img/From-greenfield25.png)
+
+Adding another project
+
+![](img/From-greenfield26.png)
+
+![](img/From-greenfield27.png)
+
+![](img/From-greenfield28.png)
+
+![](img/From-greenfield29.png)
+
+---
+
+We continued growing. The product team managed to overtake us and had the backlog growing. We had new team formed that would tackle another part of the product and we needed to add another project
+45,55
+
+---
+
+Two of the projects were mostly similar
+So one was importing a lot that it didn’t need
+Not complicate things34,35
+
+---
+
+Two libraries
+One for sharing stuff across all projects and the other one for sharing between projects
+This aproach wouldn’t scale well. Although it was easy at first to keep the pace it presented some chalenges
+07,84
+
+![](img/From-greenfield30.png)
+
+# Shared library strategy
+
+---
+
+37,27
+
+# Shared library strategies
+
+---
+
+08,64
+
+# Library per component approach
+
+---
+
+Previous experience
+One library per component. Separated in a different repo
+Exposed by npm
+It is easier to maintain because everything is neatly separated
+Managing is too cumbersome
+What ends up happening is everyone needs latest version
+
+01:47,46
+
+# DDD approach
+
+---
+
+Followed DDD in the BE
+Domain logic in the FE
+Clearly defined context boundries
+Still a bit of overhead
+
+01:10,10
+
+# The NX approach
+
+---
+
+We decided to use a hybrid
+Insurances
+We can maybe separate it in the future into a microfrontend
+
+38,66
+
+![](img/From-greenfield31.png)
+
+# Key takeaways
+
+---
+
+35,60
+
+#
+
+![](img/From-greenfield32.png)
+
+![](img/From-greenfield33.png)
+
+![](img/From-greenfield34.png)
+
+![](img/From-greenfield35.png)
+
+![](img/From-greenfield36.png)
+
+![](img/From-greenfield37.png)
+
+![](img/From-greenfield38.png)
+
+![](img/From-greenfield39.png)
+
+![](img/From-greenfield40.png)
+
+---
+
+We continued growing. We got some features ready. It was time for alpha testing.
+We own our facilities
+Not only from product definition and ux standpoint but also from a technical implementation
+
+![](img/From-greenfield41.png)
+
+# Bad internet connection
+
+---
+
+We didn’t have to wait long
+The internet providers in the states are not as good as the ones we have.
+Two major areas we could improve were fcp.
+FCP measures how long it takes the browser to render the first piece of DOM content after a user navigates to your page. Images, non-white elements, and SVGs on your page are considered DOM content; anything inside an iframe isn't included.
+There are lots of tools that help you measure that and rate your performance such as Lighthouse.
+
+Another point of improvement is request timeouts. At first if a request times out we just showed a generic error so the user wouldn’t know the cause of the problem.
+
+
+
+35,11
+
+![](img/From-greenfield42.png)
+
+FCP \- Bundle size
+
+#
+
+---
+
+If an npm package is using ESw6 imports, we can take advantage of tree-shaking
+
+01:55,76
+
+FCP – SSR vs Manual inline cons
+
+---
+
+There are three main reasons to create a Universal version of your application.
+Facilitate web crawlers through search engine optimization (SEO)
+Improve performance on mobile and low-powered devices
+Show the first page quickly with a first-contentful paint (FCP)
+
+02:11,22
+
+Initial timeout interval
+
+Request Timeouts
+
+Exponential backoff
+
+```
+intercept\(request: HttpRequest\<unknown> <span style="color:#CC7832">\, </span> next: HttpHandler\): Observable<HttpEvent\<unknown>> \{   <span style="color:#9876AA">const</span>  <span style="color:#9876AA"> </span> id = request\. <span style="color:#9876AA">headers</span> \. <span style="color:#FFC66D">get</span> \( <span style="color:#9876AA"> _RequestIdHeader_ </span> \) <span style="color:#CC7832">;</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">const</span>  <span style="color:#9876AA"> </span> requestRetries =  <span style="color:#CC7832">this</span> \.failedRequestsService\. <span style="color:#FFC66D">getFailedRequest</span> \(id\)?\. <span style="color:#9876AA">retries </span> ||  <span style="color:#6897BB">1</span>  <span style="color:#CC7832">;</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">return </span> next\. <span style="color:#FFC66D">handle</span> \(request\)\. <span style="color:#FFC66D">pipe</span> \( <span style="color:#FFC66D">timeout</span> \(requestRetries \* backoffInterval\)\) <span style="color:#CC7832">;</span> \}
+```
+
+![](img/From-greenfield43.png)
+
+---
+
+Simplified version using requestId
+
+01:22,82
+
+![](img/From-greenfield44.png)
+
+# Key takeaways
+
+---
+
+Tight feedback loops are magic: live reloading is magical. Hot module replacement less so. With live reload, your development browser automatically reloads your dev page when your code changes. If you suck and your page loads slowly, then you suffer. Hot module replacement hides the pain and lets you pass the suffering onto the user.
+
+51,92
+
+#
+
+Introducing state management library
+
+![](img/From-greenfield45.png)
+
+![](img/From-greenfield46.png)
+
+![](img/From-greenfield47.png)
+
+![](img/From-greenfield48.png)
+
+![](img/From-greenfield49.png)
+
+![](img/From-greenfield50.png)
+
+![](img/From-greenfield51.png)
+
+![](img/From-greenfield52.png)
+
+![](img/From-greenfield53.png)
+
+![](img/From-greenfield54.png)
+
+![](img/From-greenfield55.png)
+
+![](img/From-greenfield56.png)
+
+---
+
+This near to where we are now. We recently finished an mvp and did done a beta test. The team continues growing right now we are at about 50+ 35 of which are developers. We started implementing more complex features on the FE. And we hit another mine.
+
+01:14,31
+
+# Simplest Stateful Service
+
+<span style="color:#CC7832">export class </span> StateService \{   <span style="color:#CC7832">private </span>  <span style="color:#9876AA">state </span> =  <span style="color:#CC7832">new </span> BehaviorSubject< <span style="color:#CC7832">any</span> >\(\{\}\) <span style="color:#CC7832">;</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">state$ </span> =  <span style="color:#CC7832">this</span> \. <span style="color:#9876AA">state</span> \. <span style="color:#FFC66D">asObservable</span> \(\) <span style="color:#CC7832">;</span>  <span style="color:#CC7832">  </span>  <span style="color:#FFC66D">setState</span> \(state\) \{     <span style="color:#CC7832">this</span> \. <span style="color:#9876AA">state</span> \. <span style="color:#FFC66D">next</span> \(state\) <span style="color:#CC7832">;</span>  <span style="color:#CC7832">  </span> \}\}
+
+---
+
+We all had experience with Redux in the form of ngrx. We didn’t like it
+State as subject
+Exposed as observable
+Methods to update it
+This approach got us very far
+When we finaly had a more complex case we still did it that way but decided that it is time to consider a library to help us.
+
+01:11,13
+
+# No State Management library
+
+![](img/From-greenfield57.png)
+
+![](img/From-greenfield58.png)
+
+---
+
+No rules – no immutablity of the state
+The team is responsible
+
+01:41,70
+
+# Akita vs NGRX
+
+![](img/From-greenfield59.png)
+
+![](img/From-greenfield60.png)
+
+![](img/From-greenfield61.png)
+
+![](img/From-greenfield62.png)
+
+<span style="color:#4A4A4A">Solid Speed/Performance even with large amounts of data</span>
+
+<span style="color:#4A4A4A">Most used option so a lot of examples/resources online</span>
+
+<span style="color:#4A4A4A">Well Supported</span>
+
+<span style="color:#4A4A4A">Simple/Small Learning Curve</span>
+
+<span style="color:#4A4A4A">Little to no boilerplate</span>
+
+![](img/From-greenfield63.png)
+
+![](img/From-greenfield64.png)
+
+![](img/From-greenfield65.png)
+
+---
+
+Simple
+Main features are store and query
+Store keeps the state and provides basic crud operations
+Plays nicely with Angular
+Still good support and popularity
+
+NGRX – the team needs to understand the whole redux pattern and use it properly.
+53,69
+
+![](img/From-greenfield66.png)
+
+# Key takeaways
+
+---
+
+We created wrappers around the store and query. We have state management in seprate library and in the projects everywhere the wrapper is used
+
+01:24,04
+
+#
+
+Micro\-Frontends
+
+![](img/From-greenfield67.png)
+
+![](img/From-greenfield68.png)
+
+![](img/From-greenfield69.png)
+
+![](img/From-greenfield70.png)
+
+![](img/From-greenfield71.png)
+
+![](img/From-greenfield72.png)
+
+![](img/From-greenfield73.png)
+
+![](img/From-greenfield74.png)
+
+![](img/From-greenfield75.png)
+
+![](img/From-greenfield76.png)
+
+![](img/From-greenfield77.png)
+
+---
+
+What the future holds?
+We are preparing for another wave of developing features. In the meantime we are doing some improvements, refactorings. And we also have time to reflect on what we’ve learned so far and think about growing scaling being configurable and extensible. In that regard MFE
+
+19,12
+
+# MFE
+
+![](img/From-greenfield78.png)
+
+![](img/From-greenfield79.png)
+
+![](img/From-greenfield80.png)
+
+![](img/From-greenfield81.png)
+
+No special tricks needed no more
+
+![](img/From-greenfield82.png)
+
+![](img/From-greenfield83.png)
+
+![](img/From-greenfield84.png)
+
+Webpack v5 magic
+
+Version conflicts
+
+<span style="color:#9876AA">shared</span>  <span style="color:#CC7832">: </span> share\(\{   <span style="color:#9876AA">"@angular/core"</span>  <span style="color:#CC7832">: </span> \{  <span style="color:#9876AA">singleton</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">strictVersion</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">requiredVersion</span>  <span style="color:#CC7832">: </span>  <span style="color:#6A8759">'auto' </span> \} <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">"@angular/common"</span>  <span style="color:#CC7832">: </span> \{  <span style="color:#9876AA">singleton</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">strictVersion</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">requiredVersion</span>  <span style="color:#CC7832">: </span>  <span style="color:#6A8759">'auto' </span> \} <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">"@angular/router"</span>  <span style="color:#CC7832">: </span> \{  <span style="color:#9876AA">singleton</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">strictVersion</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">requiredVersion</span>  <span style="color:#CC7832">: </span>  <span style="color:#6A8759">'auto' </span> \} <span style="color:#CC7832">\,</span>  <span style="color:#CC7832">  </span>  <span style="color:#9876AA">"@angular/common/http"</span>  <span style="color:#CC7832">: </span> \{  <span style="color:#9876AA">singleton</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">strictVersion</span>  <span style="color:#CC7832">: true\, </span>  <span style="color:#9876AA">requiredVersion</span>  <span style="color:#CC7832">: </span>  <span style="color:#6A8759">'auto' </span> \} <span style="color:#CC7832">\,</span> \}\)
+
+---
+
+The implementation of microfrontends has so far involved numerous tricks and workarounds. Webpack Module Federation finally provides a simple and solid solution for this. To improve performance, libraries can be shared and strategies for dealing with incompatible versions can be configured.
+It is also interesting that the microfrontends are loaded by Webpack under the hood. There is no trace of this in the source code of the host or the remote. This simplifies the use of module federation and the resulting source code, which does not require additional microfrontend frameworks.
+However, this approach also puts more responsibility on the developers. For example, you have to ensure that the components that are only loaded at runtime and that were not yet known when compiling also interact as desired.
+One also has to deal with possible version conflicts. For example, it is likely that components that were compiled with completely different Angular versions will not work together at runtime. Such cases must be avoided with conventions or at least recognized as early as possible with integration tests.
+
+02:01,45
+
+#
+
+![](img/From-greenfield85.png)
+
+![](img/From-greenfield86.png)
+
+![](img/From-greenfield87.png)
+
+![](img/From-greenfield88.png)
+
+![](img/From-greenfield89.png)
+
+![](img/From-greenfield90.png)
+
+![](img/From-greenfield91.png)
+
+![](img/From-greenfield92.png)
+
+![](img/From-greenfield93.png)
+
+![](img/From-greenfield94.png)
+
+![](img/From-greenfield95.png)
+
+![](img/From-greenfield96.png)
+
+![](img/From-greenfield97.png)
+
+---
+
+Might need to think about a mobile version and a mobile friendly version
+
+12,35
+
+# PWA
+
+![](img/From-greenfield98.png)
+
+Easy to integrate
+
+![](img/From-greenfield99.png)
+
+Browser support is slowly but surely improving
+
+Availability in the offline mode
+
+Mobile\-like behavior
+
+Smooth installation
+
+No app store submission
+
+Use of hardware features
+
+![](img/From-greenfield100.png)
+
+![](img/From-greenfield101.png)
+
+![](img/From-greenfield102.png)
+
+![](img/From-greenfield103.png)
+
+---
+
+54,45
+
+#
+
+![](img/From-greenfield104.png)
+
+![](img/From-greenfield105.png)
+
+![](img/From-greenfield106.png)
+
+![](img/From-greenfield107.png)
+
+![](img/From-greenfield108.png)
+
+![](img/From-greenfield109.png)
+
+![](img/From-greenfield110.png)
+
+![](img/From-greenfield111.png)
+
+![](img/From-greenfield112.png)
+
+![](img/From-greenfield113.png)
+
+![](img/From-greenfield114.png)
+
+![](img/From-greenfield115.png)
+
+![](img/From-greenfield116.png)
+
+![](img/From-greenfield117.png)
+
+![](img/From-greenfield118.png)
+
+![](img/From-greenfield119.png)
+
+![](img/From-greenfield120.png)
+
+![](img/From-greenfield121.png)
+
+![](img/From-greenfield122.png)
+
+![](img/From-greenfield123.png)
+
+![](img/From-greenfield124.png)
+
+![](img/From-greenfield125.png)
+
+![](img/From-greenfield126.png)
+
+![](img/From-greenfield127.png)
+
+![](img/From-greenfield128.png)
+
+---
+
+Honorable mentions
+Styling took us some time to figure out
+Strict mode in Angular. tsconfig.json
+strictPropertyInitialization
+strictNullChecks
+noImplicitAny
+strictBindCallApply
+strictFunctionTypes
+
+01:01,71
+
+![](img/From-greenfield129.jpg)
+
+# Q&A
+
+![](img/From-greenfield130.png)
+
+![](img/From-greenfield131.png)
+
+![](img/From-greenfield132.png)

@@ -1,0 +1,7 @@
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  left: 36px;
+}

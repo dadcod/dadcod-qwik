@@ -2,7 +2,7 @@
 
 ## The dream
 
-Imagine starting on a fresh project, there is no legacy, there is no one to blame it is up to you and your team to build this state of the art project. And as months go by and new colleagues join they will open the project read through the code and stop every 5 minutes to admire what you’ve wrote.
+Imagine starting on a fresh project, there is no legacy, there is no one to blame it is up to you and your team to build this state of the art project. And as months go by and new colleagues join they will open the project read through the code and stop every 5 minutes to admire what you've wrote.
 
 import Image3 from '~/media/from-greenfield-to-minefield/Slide3.jpeg?jsx';
 
@@ -33,7 +33,7 @@ let derka = () => {
 }
 ```
 
-This is not a step by step guide or a recipe for how to build and scale a project from scratch. In this talk a will tell you the story of our journey so far. What are some key decisions that we made, what are the problems that we stumbled upon and how we tackled them. I’ll go in depth about the more technical parts. I would also cover some of the more architectural topics and a lot of them are polarizing so I’ll not give statements and tell you which is best but will be more pc and try to give a more philosophical view and point in the direction in which you should think about when ?solving them.
+This is not a step by step guide or a recipe for how to build and scale a project from scratch. In this talk a will tell you the story of our journey so far. What are some key decisions that we made, what are the problems that we stumbled upon and how we tackled them. I'll go in depth about the more technical parts. I would also cover some of the more architectural topics and a lot of them are polarizing so I'll not give statements and tell you which is best but will be more pc and try to give a more philosophical view and point in the direction in which you should think about when ?solving them.
 
 ## Project timeline
 
@@ -83,9 +83,9 @@ Uses real browser
 ---
 
 Just a minute on that topic. In my years of experience I see that often tests are often neglected!!!!!!!!!…………………
-I’ve also been there done that. It becomes ugly after a while. Not gonna state the benefits of tests.
-But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where testing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests. 
-And it is never too late to set the tests and start covering old functionality together with the new one. I’ve also done that.
+I've also been there done that. It becomes ugly after a while. Not gonna state the benefits of tests.
+But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where testing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests. 
+And it is never too late to set the tests and start covering old functionality together with the new one. I've also done that.
 57,11
 
 #
@@ -113,7 +113,7 @@ Polyreop
 The Sofia team continued growing. We had two fully functional teams. We started working on a new part of the product . We had to add another project
 From the beginning we used monorepo for the BE.
 
-Smart, Extensible Build Framework
+Smart, Extensible Build Framework
 
 52,86
 
@@ -194,14 +194,14 @@ We continued growing. The product team managed to overtake us and had the backlo
 ---
 
 Two of the projects were mostly similar
-So one was importing a lot that it didn’t need
-Not complicate things34,35
+So one was importing a lot that it didn't need
+Not complicate things 34,35
 
 ---
 
 Two libraries
 One for sharing stuff across all projects and the other one for sharing between projects
-This aproach wouldn’t scale well. Although it was easy at first to keep the pace it presented some chalenges
+This aproach wouldn't scale well. Although it was easy at first to keep the pace it presented some chalenges
 07,84
 
 ![](img/From-greenfield30.png)
@@ -292,13 +292,13 @@ Not only from product definition and ux standpoint but also from a technical imp
 
 ---
 
-We didn’t have to wait long
+We didn't have to wait long
 The internet providers in the states are not as good as the ones we have.
 Two major areas we could improve were fcp.
-FCP measures how long it takes the browser to render the first piece of DOM content after a user navigates to your page. Images, non-white elements, and SVGs on your page are considered DOM content; anything inside an iframe isn't included.
+FCP measures how long it takes the browser to render the first piece of DOM content after a user navigates to your page. Images, non-white elements, and SVGs on your page are considered DOM content; anything inside an iframe isn't included.
 There are lots of tools that help you measure that and rate your performance such as Lighthouse.
 
-Another point of improvement is request timeouts. At first if a request times out we just showed a generic error so the user wouldn’t know the cause of the problem.
+Another point of improvement is request timeouts. At first if a request times out we just showed a generic error so the user wouldn't know the cause of the problem.
 
 
 
@@ -316,14 +316,14 @@ If an npm package is using ESw6 imports, we can take advantage of tree-shaking
 
 01:55,76
 
-FCP – SSR vs Manual inline cons
+FCP - SSR vs Manual inline cons
 
 ---
 
 There are three main reasons to create a Universal version of your application.
-Facilitate web crawlers through search engine optimization (SEO)
+Facilitate web crawlers through search engine optimization (SEO)
 Improve performance on mobile and low-powered devices
-Show the first page quickly with a first-contentful paint (FCP)
+Show the first page quickly with a first-contentful paint (FCP)
 
 02:11,22
 
@@ -395,7 +395,7 @@ This near to where we are now. We recently finished an mvp and did done a beta t
 
 ---
 
-We all had experience with Redux in the form of ngrx. We didn’t like it
+We all had experience with Redux in the form of ngrx. We didn't like it
 State as subject
 Exposed as observable
 Methods to update it
@@ -412,7 +412,7 @@ When we finaly had a more complex case we still did it that way but decided that
 
 ---
 
-No rules – no immutablity of the state
+No rules - no immutablity of the state
 The team is responsible
 
 01:41,70
@@ -451,7 +451,7 @@ Store keeps the state and provides basic crud operations
 Plays nicely with Angular
 Still good support and popularity
 
-NGRX – the team needs to understand the whole redux pattern and use it properly.
+NGRX - the team needs to understand the whole redux pattern and use it properly.
 53,69
 
 ![](img/From-greenfield66.png)
@@ -493,7 +493,7 @@ Micro\-Frontends
 ---
 
 What the future holds?
-We are preparing for another wave of developing features. In the meantime we are doing some improvements, refactorings. And we also have time to reflect on what we’ve learned so far and think about growing scaling being configurable and extensible. In that regard MFE
+We are preparing for another wave of developing features. In the meantime we are doing some improvements, refactorings. And we also have time to reflect on what we've learned so far and think about growing scaling being configurable and extensible. In that regard MFE
 
 19,12
 

@@ -1,12 +1,13 @@
 import Logo from '~/media/rope.webp?jsx';
+import { ThemeSwitch } from '~/components/theme-switcher/theme-switcher';
 import { component$ } from '@builder.io/qwik';
 import styles from './header.module.css';
 
 export default component$(() => {
   const sections = [
     {
-      name: 'Home',
-      id: 'section-home',
+      name: 'Blog',
+      id: 'blog',
     },
     {
       name: 'Portfolio',
@@ -30,10 +31,10 @@ export default component$(() => {
           {sections.map((section) => (
             <>
               <li>
-                <a href={`#${section.id}`}>
+                <a href={`/${section.id}`}>
                   <span class="animated-button">
                     <span>
-                      {section.name.split('').map((letter,index) => (
+                      {section.name.split('').map((letter, index) => (
                         <em key={index}>{letter}</em>
                       ))}
                     </span>
@@ -43,6 +44,7 @@ export default component$(() => {
             </>
           ))}
         </ul>
+        <ThemeSwitch />
       </div>
     </header>
   );

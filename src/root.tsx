@@ -1,12 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import "./global.css";
+
 import {
   QwikCityProvider,
   RouterOutlet,
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
-import { RouterHead } from "./components/router-head/router-head";
 
-import "./global.css";
+import { RouterHead } from "./components/router-head/router-head";
+import { component$ } from "@builder.io/qwik";
 
 export default component$(() => {
   /**
@@ -19,6 +20,28 @@ export default component$(() => {
   return (
     <QwikCityProvider>
       <head>
+        <script
+          dangerouslySetInnerHTML={`
+        (function() {
+          function setTheme(theme) {
+            document.documentElement.className = theme;
+            localStorage.setItem('theme', theme);
+          }
+          var theme = localStorage.getItem('theme');
+          console.log(theme);
+          if (theme) {
+            setTheme(theme);
+          } else {
+            setTheme('light');
+          }
+        })();
+        window.addEventListener('load', function() {
+          var themeSwitch = document.getElementById('hide-checkbox');
+          themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
+        }
+        );
+      `}
+        ></script>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />

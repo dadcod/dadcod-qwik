@@ -1,10 +1,9 @@
-import { Slot, component$, useStyles$ } from "@builder.io/qwik";
+import { Slot, component$, useStyles$ } from '@builder.io/qwik';
 
-import Footer from "~/components/starter/footer/footer";
-import Header from "~/components/starter/header/header";
-import type { RequestHandler } from "@builder.io/qwik-city";
-import { routeLoader$ } from "@builder.io/qwik-city";
-import styles from "./styles.css?inline";
+import Footer from '~/components/starter/footer/footer';
+import Header from '~/components/starter/header/header';
+import type { RequestHandler } from '@builder.io/qwik-city';
+import styles from './styles.css?inline';
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -17,18 +16,12 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
   });
 };
 
-export const useServerTimeLoader = routeLoader$(() => {
-  return {
-    date: new Date().toISOString(),
-  };
-});
-
 export default component$(() => {
   useStyles$(styles);
   return (
     <>
       <Header />
-      <main>
+      <main class="px-8 max-w-screen-xl mx-auto pb-40">
         <Slot />
       </main>
       <Footer />

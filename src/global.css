@@ -8,7 +8,7 @@
 
 @layer base {
   h1 {
-    @apply text-3xl text-yellow-50;
+    @apply text-3xl;
   }
   h2 {
     @apply text-xl;
@@ -38,6 +38,7 @@
 
 html {
   line-height: 1;
+  height: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -63,6 +64,7 @@ body {
   padding: 0;
   margin: 0;
   line-height: inherit;
+  height: 100%;
 }
 
 /**
@@ -108,7 +110,6 @@ a {
 
 a:hover {
   text-decoration: none;
-  /* color: #68e0cf; */
 }
 
 /* - Buttons */
@@ -124,6 +125,9 @@ a:hover {
   position: relative;
   overflow: hidden;
   display: block;
+  text-shadow: 0 16px 0 theme('colors.emerald.400');
+}
+.dark .animated-button span {
   text-shadow: 0 16px 0 #68e0cf;
 }
 

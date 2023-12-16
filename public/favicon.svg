@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="45.803 181.733 253.366 253.366" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
-  <defs>
-    <style bx:fonts="Anonymous Pro">@import url(https://fonts.googleapis.com/css2?family=Anonymous+Pro%3Aital%2Cwght%400%2C400%3B0%2C700%3B1%2C400%3B1%2C700&amp;display=swap);</style>
-    <style bx:fonts="Bonheur Royale">@import url(https://fonts.googleapis.com/css2?family=Bonheur+Royale%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
-  </defs>
-  <ellipse style="paint-order: fill; stroke: rgb(0, 0, 0);" cx="172.486" cy="308.416" rx="126.683" ry="126.683"/>
-  <text style="fill: rgb(0, 255, 0); font-family: 'Anonymous Pro'; font-size: 101px; white-space: pre;" transform="matrix(1, 0, 0, 1, -71.48079681396484, 197.2333221435547)"><tspan x="192.56" y="104.912">R0</tspan><tspan x="192.56" dy="0.7em">​</tspan><tspan>PE</tspan></text>
-  <text style="fill: rgb(0, 170, 0); font-family: 'Bonheur Royale'; font-size: 61px; white-space: pre;" x="220.362" y="299.917">sen</text>
-  <text style="fill: rgb(0, 170, 0); font-family: 'Bonheur Royale'; font-size: 61px; white-space: pre;" x="221.388" y="374.067">tkov</text>
+<svg width="482" height="371" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_7" height="45" width="282" y="75.5" x="95" fill-opacity="0" stroke-width="99" stroke="#23193b" fill="#9ea0ba"/>
+  <rect stroke="#23193b" id="svg_5" height="95.00002" width="196.00004" y="156.50001" x="143.99997" fill-opacity="0" stroke-width="99" fill="#9ea0ba"/>
+  <rect stroke="#23193b" id="svg_4" height="275.00002" width="386.00005" y="46.50001" x="48.99996" fill-opacity="0" stroke-width="99" fill="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="229.59697" cy="104.47756" id="svg_35" rx="99.25372" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="88.55218" cy="16.41787" id="svg_20" rx="71.64178" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="333.32826" cy="16.41787" id="svg_26" rx="132.83582" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_27" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_28" rx="73.88059" ry="1.49254" stroke="#23193b"/>
+  <ellipse fill="none" stroke-width="24" cx="51.23875" cy="302.985" id="svg_30" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="141.53722" cy="349.25365" id="svg_31" rx="126.11939" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="348.25363" cy="302.985" id="svg_32" rx="114.92535" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="160.19392" cy="304.47754" id="svg_33" rx="35.82089" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="381.8357" cy="349.25365" id="svg_34" rx="79.85073" ry="1.49254" stroke="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="57.20886" cy="105.97011" id="svg_36" rx="37.31342" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="412.4327" cy="105.97011" id="svg_37" rx="47.76119" ry="1.49254" stroke="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="141.53722" cy="349.25365" id="svg_38" rx="126.11939" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="228.10437" cy="159.70143" id="svg_39" rx="126.11939" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="46.01487" cy="158.20891" id="svg_40" rx="23.13432" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="51.23875" cy="302.985" id="svg_41" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_44" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_45" rx="73.88059" ry="1.49254" stroke="#23193b"/>
+  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_46" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_47" rx="73.88059" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="421.38795" cy="158.20891" id="svg_48" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="91.53726" cy="208.95515" id="svg_54" rx="71.64178" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="336.31333" cy="208.95515" id="svg_55" rx="132.83582" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="231.0895" cy="255.2238" id="svg_56" rx="99.25372" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="59.70139" cy="256.71636" id="svg_57" rx="37.31342" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="413.92524" cy="256.71636" id="svg_58" rx="47.76119" ry="1.49254" stroke="#9ea0ba"/>
+  <text xml:space="preserve" text-anchor="start" font-family="'Rubik'" font-size="234" id="svg_8" y="263.30469" x="4" stroke-width="14" stroke="#ffffff" fill="#ffffff">DAD</text>
+ </g>
 </svg>

@@ -1,13 +1,10 @@
-import "./global.css";
+import './global.css';
 
-import {
-  QwikCityProvider,
-  RouterOutlet,
-  ServiceWorkerRegister,
-} from "@builder.io/qwik-city";
+import { $, component$ } from '@builder.io/qwik';
+import { ImageTransformerProps, useImageProvider } from 'qwik-image';
+import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 
-import { RouterHead } from "./components/router-head/router-head";
-import { component$ } from "@builder.io/qwik";
+import { RouterHead } from './components/router-head/router-head';
 
 export default component$(() => {
   /**
@@ -16,6 +13,18 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+
+  const imageTransformer$ = $(({ src, width, height }: ImageTransformerProps): string => {
+    return `${src}?w=${width}&h=${height}&format=webp`;
+  });
+
+  // Provide your default options
+  useImageProvider({
+    // you can set this property to overwrite default values [640, 960, 1280, 1920, 3840]
+    resolutions: [640],
+    // you we can define the source from which to load our image
+    imageTransformer$,
+  });
 
   return (
     <QwikCityProvider>
@@ -35,10 +44,10 @@ export default component$(() => {
             setTheme('light');
           }
         })();
-        window.addEventListener('load', function() {
-          var themeSwitch = document.getElementById('hide-checkbox');
-          themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
-        }
+        // window.addEventListener('load', function() {
+        //   var themeSwitch = document.getElementById('hide-checkbox');
+        //   themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
+        // }
         );
       `}
         ></script>
@@ -47,7 +56,10 @@ export default component$(() => {
         <RouterHead />
         <ServiceWorkerRegister />
       </head>
-      <body lang="en">
+      <body
+        lang="en"
+        class="text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-gray-900 antialiased h-screen"
+      >
         <RouterOutlet />
       </body>
     </QwikCityProvider>

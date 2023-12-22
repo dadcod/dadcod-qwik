@@ -21,7 +21,7 @@ export default component$(() => {
   return (
     <>
       <Header />
-      <main class="px-8 max-w-screen-xl mx-auto pb-40">
+      <main class="sm:px-8 max-w-screen-lg mx-auto pb-8">
         <Slot />
       </main>
       <Footer />

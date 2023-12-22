@@ -11,10 +11,25 @@
     @apply text-3xl;
   }
   h2 {
-    @apply text-xl;
+    @apply text-2xl;
   }
   a {
-    @apply text-red-700;
+    @apply text-link-light dark:text-link-dark;
+  }
+  img {
+    @apply rounded-lg;
+  }
+  p {
+    @apply text-base py-3;
+  }
+}
+@layer components {
+  .accent {
+    @apply bg-gradient-to-br
+     from-emerald-500 
+     to-cyan-400 
+     bg-clip-text 
+     text-transparent;
   }
 }
 
@@ -27,7 +42,6 @@
  */
 
 :root {
-  --qwik-dark-blue: #006ce9;
   --qwik-light-blue: #18b6f6;
   --qwik-light-purple: #ac7ff4;
   --qwik-dark-purple: #713fc2;
@@ -38,7 +52,6 @@
 
 html {
   line-height: 1;
-  height: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -103,7 +116,6 @@ body {
 
 /* - Links */
 a {
-  color: #fff;
   text-decoration: underline;
   outline: none;
 }
@@ -118,17 +130,17 @@ a:hover {
   top: -1px;
   display: inline-block;
   vertical-align: middle;
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .animated-button span {
   position: relative;
   overflow: hidden;
   display: block;
-  text-shadow: 0 16px 0 theme('colors.emerald.400');
+  text-shadow: 0 20px 0 theme('colors.emerald.400');
 }
 .dark .animated-button span {
-  text-shadow: 0 16px 0 #68e0cf;
+  text-shadow: 0 20px 0 #68e0cf;
 }
 
 .animated-button span em {
@@ -192,5 +204,5 @@ a:hover {
 }
 
 a:hover .animated-button em {
-  transform: translateY(calc(16px * -1));
+  transform: translateY(calc(20px * -1));
 }

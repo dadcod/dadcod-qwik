@@ -10,6 +10,10 @@ module.exports = {
       colors: {
         primary: colors.purple,
         secondary: colors.sky,
+        link: {
+          dark: '#fff',
+          light: '#012',
+        },
       },
       fontFamily: {
         sans: ["'Inter Variable'", ...defaultTheme.fontFamily.sans],

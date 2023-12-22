@@ -48,7 +48,7 @@ export default component$(() => {
         //   var themeSwitch = document.getElementById('hide-checkbox');
         //   themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
         // }
-        );
+        // );
       `}
         ></script>
         <meta charSet="utf-8" />
@@ -58,7 +58,7 @@ export default component$(() => {
       </head>
       <body
         lang="en"
-        class="text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-gray-900 antialiased h-screen"
+        class="text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-gray-900 antialiased flex flex-col min-h-screen"
       >
         <RouterOutlet />
       </body>

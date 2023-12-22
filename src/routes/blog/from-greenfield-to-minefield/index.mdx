@@ -1,4 +1,24 @@
+---
+title: From Greenfield to Minefield and back
+excerpt: From Greenfield to Minefield and back description alabala
+image: /images/front.png
+tags:
+  - angular
+  - derka
+  - docs
+
+og:
+  - title: true
+    description: true
+  - image: /images/front.png
+    image:alt: A shiny red apple with a bite taken out
+---
+
 # From greenfield to minefield and back
+
+import { Tags } from '../../../components/tags/';
+
+<Tags />
 
 ## The dream
 
@@ -84,7 +104,7 @@ Uses real browser
 
 Just a minute on that topic. In my years of experience I see that often tests are often neglected!!!!!!!!!…………………
 I've also been there done that. It becomes ugly after a while. Not gonna state the benefits of tests.
-But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where testing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests. 
+But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where testing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests.
 And it is never too late to set the tests and start covering old functionality together with the new one. I've also done that.
 57,11
 
@@ -299,8 +319,6 @@ FCP measures how long it takes the browser to render the first piece of DOM cont
 There are lots of tools that help you measure that and rate your performance such as Lighthouse.
 
 Another point of improvement is request timeouts. At first if a request times out we just showed a generic error so the user wouldn't know the cause of the problem.
-
-
 
 35,11
 

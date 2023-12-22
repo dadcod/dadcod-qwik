@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
 
-import Logo from '~/media/dad_logo_wb.webp?jsx';
+import Logo from '~/media/dad_cod_logo_wb.svg?jsx';
 import ToggleTheme from '~/components/theme-toggle/theme-toggle';
 import styles from './header.module.css?inline';
 
@@ -23,19 +23,19 @@ export default component$(() => {
   ];
 
   return (
-    <header class="fixed sticky top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out">
+    <header class="sticky top-0 z-40 md:px-3 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
       <div class="inset-0 absolute"></div>
-      <div class=" mx-auto max-w-7xl relative md:flex md:justify-between  py-3 text-default w-full">
+      <div class=" mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
         <div class="logo">
-          <a href="/" title="qwik">
-            <Logo style={{ width: 100, height: 100 }} />
+          <a class="w-4 h-4" href="/" title="qwik">
+            <Logo style={{ width: 64, height: 64 }} />
           </a>
         </div>
         <nav class="items-center md:w-auto w-full hidden md:flex md:mx-5 md:overflow-x-auto md:overflow-y-visible overflow-x-hidden overflow-y-auto text-default">
           <ul class="flex flex-col gap-8 font-medium md:flex-row md:self-center md:text-[0.9375rem] md:w-auto text-xl tracking-[0.01rem] w-full">
             {sections.map((section) => (
               <>
-                <li class=" m-0 p-0 text-xs uppercase font-bold">
+                <li class=" m-0 p-0 text-md uppercase font-bold">
                   <a class="dark:text-white text-black inline-block p-0 no-underline" href={`/${section.id}`}>
                     <span class="animated-button">
                       <span>

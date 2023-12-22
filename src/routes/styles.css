@@ -102,7 +102,7 @@ ul {
 } */
 
 /* BUTTONS -------------------------------------- */
-a.button,
+/* a.button,
 button {
   background: var(--qwik-light-blue);
   border: none;
@@ -130,4 +130,8 @@ button.button-small {
     font-size: 1rem;
     padding: 23px 35px;
   }
-}
+} */
+/* 
+.dark a {
+  color: #68e0cf;
+} */

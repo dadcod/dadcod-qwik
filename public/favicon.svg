@@ -1,37 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg width="482" height="371" xmlns="http://www.w3.org/2000/svg">
-
+<svg width="275" height="228" xmlns="http://www.w3.org/2000/svg">
  <g>
   <title>Layer 1</title>
-  <rect id="svg_7" height="45" width="282" y="75.5" x="95" fill-opacity="0" stroke-width="99" stroke="#23193b" fill="#9ea0ba"/>
-  <rect stroke="#23193b" id="svg_5" height="95.00002" width="196.00004" y="156.50001" x="143.99997" fill-opacity="0" stroke-width="99" fill="#9ea0ba"/>
-  <rect stroke="#23193b" id="svg_4" height="275.00002" width="386.00005" y="46.50001" x="48.99996" fill-opacity="0" stroke-width="99" fill="#9ea0ba"/>
-  <ellipse fill="none" stroke-width="24" cx="229.59697" cy="104.47756" id="svg_35" rx="99.25372" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="88.55218" cy="16.41787" id="svg_20" rx="71.64178" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="333.32826" cy="16.41787" id="svg_26" rx="132.83582" ry="1.49254" stroke="#a76845"/>
-  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_27" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
-  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_28" rx="73.88059" ry="1.49254" stroke="#23193b"/>
-  <ellipse fill="none" stroke-width="24" cx="51.23875" cy="302.985" id="svg_30" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="141.53722" cy="349.25365" id="svg_31" rx="126.11939" ry="1.49254" stroke="#a76845"/>
-  <ellipse fill="none" stroke-width="24" cx="348.25363" cy="302.985" id="svg_32" rx="114.92535" ry="1.49254" stroke="#11c8b4"/>
-  <ellipse fill="none" stroke-width="24" cx="160.19392" cy="304.47754" id="svg_33" rx="35.82089" ry="1.49254" stroke="#ca9469"/>
-  <ellipse fill="none" stroke-width="24" cx="381.8357" cy="349.25365" id="svg_34" rx="79.85073" ry="1.49254" stroke="#9ea0ba"/>
-  <ellipse fill="none" stroke-width="24" cx="57.20886" cy="105.97011" id="svg_36" rx="37.31342" ry="1.49254" stroke="#ca9469"/>
-  <ellipse fill="none" stroke-width="24" cx="412.4327" cy="105.97011" id="svg_37" rx="47.76119" ry="1.49254" stroke="#9ea0ba"/>
-  <ellipse fill="none" stroke-width="24" cx="141.53722" cy="349.25365" id="svg_38" rx="126.11939" ry="1.49254" stroke="#a76845"/>
-  <ellipse fill="none" stroke-width="24" cx="228.10437" cy="159.70143" id="svg_39" rx="126.11939" ry="1.49254" stroke="#a76845"/>
-  <ellipse fill="none" stroke-width="24" cx="46.01487" cy="158.20891" id="svg_40" rx="23.13432" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="51.23875" cy="302.985" id="svg_41" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_44" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
-  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_45" rx="73.88059" ry="1.49254" stroke="#23193b"/>
-  <ellipse fill="none" stroke-width="24" cx="145.26859" cy="56.71637" id="svg_46" rx="128.35819" ry="1.49254" stroke="#11c8b4"/>
-  <ellipse fill="none" stroke-width="24" cx="390.79092" cy="56.71637" id="svg_47" rx="73.88059" ry="1.49254" stroke="#ca9469"/>
-  <ellipse fill="none" stroke-width="24" cx="421.38795" cy="158.20891" id="svg_48" rx="37.31342" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="91.53726" cy="208.95515" id="svg_54" rx="71.64178" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="336.31333" cy="208.95515" id="svg_55" rx="132.83582" ry="1.49254" stroke="#a76845"/>
-  <ellipse fill="none" stroke-width="24" cx="231.0895" cy="255.2238" id="svg_56" rx="99.25372" ry="1.49254" stroke="#3ebed2"/>
-  <ellipse fill="none" stroke-width="24" cx="59.70139" cy="256.71636" id="svg_57" rx="37.31342" ry="1.49254" stroke="#ca9469"/>
-  <ellipse fill="none" stroke-width="24" cx="413.92524" cy="256.71636" id="svg_58" rx="47.76119" ry="1.49254" stroke="#9ea0ba"/>
-  <text xml:space="preserve" text-anchor="start" font-family="'Rubik'" font-size="234" id="svg_8" y="263.30469" x="4" stroke-width="14" stroke="#ffffff" fill="#ffffff">DAD</text>
+  <rect id="svg_7" height="45" width="159.10887" y="75.5" x="52.60051" fill-opacity="0" stroke-width="99" fill="#9ea0ba" stroke="#23193b"/>
+  <rect id="svg_5" height="95.00002" width="110.58633" y="156.50001" x="80.24706" fill-opacity="0" stroke-width="99" fill="#9ea0ba" stroke="#23193b"/>
+  <rect id="svg_4" height="275.00002" width="217.78734" y="46.50001" x="26.64655" fill-opacity="0" stroke-width="99" fill="#9ea0ba" stroke="#23193b"/>
+  <ellipse fill="none" stroke-width="24" cx="128.54225" cy="104.47756" id="svg_35" rx="56.00052" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="48.96254" cy="16.41787" id="svg_20" rx="40.42143" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="187.06909" cy="16.41787" id="svg_26" rx="74.94807" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="80.96284" cy="56.71637" id="svg_27" rx="72.42172" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="219.49043" cy="56.71637" id="svg_28" rx="41.6846" ry="1.49254" stroke="#23193b"/>
+  <ellipse fill="none" stroke-width="24" cx="27.90971" cy="302.985" id="svg_30" rx="21.05282" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="78.85754" cy="349.25365" id="svg_31" rx="71.15856" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="195.49022" cy="302.985" id="svg_32" rx="64.8427" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="89.38395" cy="304.47754" id="svg_33" rx="20.21071" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="214.43775" cy="349.25365" id="svg_34" rx="45.05305" ry="1.49254" stroke="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="31.27815" cy="105.97011" id="svg_36" rx="21.05282" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="231.70106" cy="105.97011" id="svg_37" rx="26.94762" ry="1.49254" stroke="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="78.85754" cy="349.25365" id="svg_38" rx="71.15856" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="127.7001" cy="159.70143" id="svg_39" rx="71.15856" ry="1.49254" stroke="#a76845"/>
+  <ellipse fill="none" stroke-width="24" cx="24.96232" cy="158.20891" id="svg_40" rx="13.05275" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="27.90971" cy="302.985" id="svg_41" rx="21.05282" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="80.96284" cy="56.71637" id="svg_44" rx="72.42172" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="219.49043" cy="56.71637" id="svg_45" rx="41.6846" ry="1.49254" stroke="#23193b"/>
+  <ellipse fill="none" stroke-width="24" cx="80.96284" cy="56.71637" id="svg_46" rx="72.42172" ry="1.49254" stroke="#11c8b4"/>
+  <ellipse fill="none" stroke-width="24" cx="219.49043" cy="56.71637" id="svg_47" rx="41.6846" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="236.75376" cy="158.20891" id="svg_48" rx="21.05282" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="194.80392" cy="206.95515" id="svg_54" rx="61.57952" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="129.38436" cy="255.2238" id="svg_56" rx="56.00052" ry="1.49254" stroke="#3ebed2"/>
+  <ellipse fill="none" stroke-width="24" cx="32.68447" cy="256.71636" id="svg_57" rx="21.05282" ry="1.49254" stroke="#ca9469"/>
+  <ellipse fill="none" stroke-width="24" cx="232.54318" cy="256.71636" id="svg_58" rx="26.94762" ry="1.49254" stroke="#9ea0ba"/>
+  <ellipse fill="none" stroke-width="24" cx="62.1542" cy="204.97011" id="svg_1" rx="48.10572" ry="1.49254" stroke="#9ea0ba"/>
+  <text fill="#000000" stroke-width="24" y="221.09149" id="svg_6" font-size="225" font-family="sans-serif" text-anchor="start" xml:space="preserve" x="1.77237" transform="matrix(0.564216 0 0 0.8308 0 -7.24389)" stroke="#ffffff">DAD</text>
  </g>
+
 </svg>

@@ -1,11 +1,10 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
-
 import Logo from '~/media/dad_cod_logo_wb.svg?jsx';
 import ToggleTheme from '~/components/theme-toggle/theme-toggle';
-import styles from './header.module.css?inline';
+import { component$ } from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
 
 export default component$(() => {
-  useStylesScoped$(styles);
+  const loc = useLocation();
 
   const sections = [
     {
@@ -13,14 +12,11 @@ export default component$(() => {
       id: 'blog',
     },
     {
-      name: 'Portfolio',
-      id: 'section-portfolio',
-    },
-    {
-      name: 'Contact',
-      id: 'section-contact',
+      name: 'Projects',
+      id: 'projects',
     },
   ];
+  console.log(loc.url.pathname);
 
   return (
     <header class="sticky top-0 z-40 md:px-3 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
@@ -37,7 +33,7 @@ export default component$(() => {
               <>
                 <li class=" m-0 p-0 text-md uppercase font-bold">
                   <a class="dark:text-white text-black inline-block p-0 no-underline" href={`/${section.id}`}>
-                    <span class="animated-button">
+                    <span class={'animated-button ' + (loc.url.pathname === `/${section.id}/` ? 'font-extrabold' : '')}>
                       <span>
                         {section.name.split('').map((letter, index) => (
                           <em key={index}>{letter}</em>

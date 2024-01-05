@@ -37,18 +37,12 @@ export default component$(() => {
             localStorage.setItem('theme', theme);
           }
           var theme = localStorage.getItem('theme');
-          console.log(theme);
           if (theme) {
             setTheme(theme);
           } else {
             setTheme('light');
           }
         })();
-        // window.addEventListener('load', function() {
-        //   var themeSwitch = document.getElementById('hide-checkbox');
-        //   themeSwitch.checked = localStorage.getItem('theme') === 'light'? true: false;
-        // }
-        // );
       `}
         ></script>
         <meta charSet="utf-8" />

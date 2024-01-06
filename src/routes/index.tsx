@@ -1,24 +1,13 @@
-import { Post, fetchPosts } from '~/utils/posts';
-import { component$, useStore, useTask$, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useStore, useTask$ } from '@builder.io/qwik';
 
 import BlogList from '~/components/blog-list';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import FrontImage from '~/media/front.png?jsx';
-import Typed from 'typed.js';
+import FrontImage from '~/media/front-enh-nobg.png?jsx';
+import type { Post } from '~/utils/posts';
+import { fetchPosts } from '~/utils/posts';
 import { isServer } from '@builder.io/qwik/build';
 
 export default component$(() => {
-  useVisibleTask$(({ cleanup }) => {
-    const typed = new Typed('#derka', {
-      strings: ['Dad bod, Dad cod', '&amp; a second sentence.'],
-      typeSpeed: 50,
-      startDelay: 250,
-      backSpeed: 50,
-      loop: true,
-    });
-    typed.start();
-    cleanup(() => typed.destroy());
-  });
   const store = useStore<{ posts: Post[] }>({
     posts: [],
   });

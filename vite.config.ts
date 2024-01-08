@@ -28,9 +28,8 @@ export default defineConfig(async () => {
         },
         mdx: {
           rehypePlugins: [
-            
             [
-              () => rehypePrettyCode({theme: 'monokai', keepBackground:false}) as any,
+              () => rehypePrettyCode({theme: 'monokai'}) as any,
               {
                 getHighlighter: getOrCreateHighlighter,
                 onVisitLine(node: any) {

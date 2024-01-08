@@ -57,20 +57,6 @@ export interface Post {
 
 let _posts: Post[];
 
-// Ensure only the minimal needed data is exposed
-// fields.forEach((field) => {
-//   if (field === 'slug') {
-//     items[field] = realSlug
-//   }
-//   if (field === 'content') {
-//     items[field] = content
-//   }
-
-//   if (typeof data[field] !== 'undefined') {
-//     items[field] = data[field]
-//   }
-// })
-
 /** */
 export const fetchPosts = async (): Promise<Post[]> => {
   _posts = _posts || load();

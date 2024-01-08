@@ -206,3 +206,8 @@ a:hover {
 a:hover .animated-button em {
   transform: translateY(calc(20px * -1));
 }
+
+figure[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

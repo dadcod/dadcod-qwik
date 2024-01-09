@@ -10,8 +10,14 @@
   h1 {
     @apply text-3xl;
   }
+  .blog h1 {
+    @apply font-bold;
+  }
   h2 {
     @apply text-2xl;
+  }
+  .blog h2 {
+    @apply m-3 font-bold;
   }
   a {
     @apply text-link-light dark:text-link-dark;
@@ -210,4 +216,5 @@ a:hover .animated-button em {
 figure[data-rehype-pretty-code-figure] pre {
   overflow-x: auto;
   overflow-y: hidden;
+  margin-bottom: 16px;
 }

@@ -20,7 +20,7 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
       {tagList.map((tag: string) => (
         <div
           key={tag}
-          class={`rounded-md px-2 py-1 text-xs font-semibold 
+          class={`rounded-md self-center px-2 py-1 text-xs font-semibold 
           ${tagColorMapping[tag]?.text || tagColorMapping['default'].text} 
           ${tagColorMapping[tag]?.bg || tagColorMapping['default'].bg}`}
         >

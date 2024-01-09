@@ -24,7 +24,7 @@ export default component$(() => {
       <div class=" mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
         <div class="logo">
           <a class="w-4 h-4" href="/" title="qwik">
-            <Logo style={{ width: 64, height: 64 }} />
+            <Logo style={{ width: 40, height: 40 }} />
           </a>
         </div>
         <nav class="items-center md:w-auto w-full hidden md:flex md:mx-5 md:overflow-x-auto md:overflow-y-visible overflow-x-hidden overflow-y-auto text-default">

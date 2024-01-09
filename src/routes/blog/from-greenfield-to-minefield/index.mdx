@@ -1,19 +1,27 @@
 ---
 title: From Greenfield to Minefield and back
-excerpt: From Greenfield to Minefield and back description alabala
-image: images/greenfied.webp
+excerpt: In navigating our project from greenfield to minefield and back, we've learned that successful app development is much more than coding—it's a continuous process of making informed choices, adapting to challenges, and keeping the project thriving against all odds.
+image: /images/greenfied.webp
+image:alt: A green field with a blue sky and clouds
 tags:
   - angular
-  - structure
+  - project structure
+  - state management
 
 og:
   - title: true
     description: true
-  - image: images/front-enh-nobg.png
-    image:alt: A shiny red apple with a bite taken out
+  - image: true
+    image:alt: true
 ---
 
 # From greenfield to minefield and back
+
+import Image1 from '~/media/from-greenfield-to-minefield/greenfied.webp?jsx';
+
+<p align="center">
+  <Image1 />
+</p>
 
 import { Tags } from '../../../components/tags/';
 
@@ -21,8 +29,10 @@ import { Tags } from '../../../components/tags/';
 
 ## The dream
 
-Imagine starting on a fresh project, there is no legacy, there is no one to blame it is up to you and your team to build this state of the art project.
-And as months go by and new colleagues join they will open the project read through the code and stop every 5 minutes to admire what you've wrote.
+Imagine starting on a brand-new project. It's a blank canvas, no legacy code, no one to blame.
+It's up to you and your team to build a state-of-the-art application.
+As months go by and new colleagues join, they open the project and can't help but stop every few minutes, not to troubleshoot,
+but to admire the code you've crafted.
 
 import Image3 from '~/media/from-greenfield-to-minefield/Slide3.jpeg?jsx';
 
@@ -32,7 +42,8 @@ import Image3 from '~/media/from-greenfield-to-minefield/Slide3.jpeg?jsx';
 
 ## The result
 
-Yeah, unfortunately this is not the common case but maybe it will be for you with the advices I share. Lets go through the timeline of the project together and see where things might have gone wrong.
+Unfortunately, this ideal scenario is rare, but perhaps the insights I share here can help make it a reality for you.
+Let's walk through our project's timeline together and identify potential pitfalls.
 
 import Image4 from '~/media/from-greenfield-to-minefield/Slide4.jpeg?jsx';
 
@@ -48,17 +59,14 @@ import Image5 from '~/media/from-greenfield-to-minefield/Slide5.jpeg?jsx';
   <Image5 />
 </p>
 
-This is not a step by step guide or a recipe for how to build and scale a project from scratch.
-In this article I will tell share the story of our journey so far.
-What are some key decisions that we made, what are the problems that we stumbled upon and how we tackled them.
-I'll go in depth about the more technical parts.
-I would also cover some of the more architectural topics and a lot of them are polarizing so I'll not give statements and tell you which is best but will be more pc and try to give a more philosophical view and point in the direction in which you should think about when solving them.
+This isn't a step-by-step guide on how to build and scale a project from scratch.
+Instead, I'll share our journey, the key decisions we made, the problems we encountered, and our solutions.
+The focus will be on technical aspects, and while touching upon architectural topics,
+I'll avoid definitive statements, offering a more philosophical perspective instead.
 
 ## Project timeline
 
-I will use the project timeline to structure the article.
-I will stop at some key decisions and milestones and share my thoughts on them.
-I will also share the size of the team at that point and the challenges that we faced.
+Using the project timeline as a framework, I'll highlight key decisions, milestones, team size, and challenges we faced.
 
 import Image6 from '~/media/from-greenfield-to-minefield/Slide6.jpeg?jsx';
 
@@ -68,17 +76,15 @@ import Image6 from '~/media/from-greenfield-to-minefield/Slide6.jpeg?jsx';
 
 ## Choosing a framework
 
-This is one of the controvertial topics that I will not go into much detail but rather share my experience and the reasons why we chose Angular.
-For context the project is a web application that is used by doctors and patients. It is a medical platform that helps doctors manage their patients and their health.
-The project started in late 2019. The first memebers of the team were mostly BE oriented and had experience with Java and Spring.
-So Angular made a lot of sense because the mental model is similar (i.e. class components,services,DI) and the language is also similar (i.e. typescript).
-So because we were a small team and we could use the help of BE developers Angular sounded like a good choice.
-Another important thing to mention is that we don't have architects. We are equally responsible for the architecture of the project.
-When we have to make some technical decision we go wtih an RFC. Usually one person - the one with most experience and interest in the topic writes the RFC and then we discuss it with the team and make a decision.
-This approach has pros and cons. The pros are that everyone is involved in the decision making process and everyone is responsible for the outcome. The cons are that it takes time, it is difficult to please everyone, sometimes there is no right answer.
-In this case Angular also made sense because at the time it was quite mature and opinionated: you need a router - there is a built-in one, you need to do http requests - there is a built-in service for that, you need to do testing - built-in.
-So I think if we choose React we would have to spend more time on the initial setup and we would have to make more decisions about the architecture of the project.
-Also Angular was quite stable for a couple of years and everything new was backwards compatible (I think they learned their lesson with angularJs). While react was constantly evolving (i.e. class components then functional components, hooks, server components, etc...) and there were a lot of breaking changes.
+This is one of the controversial topics that I won't go into much detail about, but I will share my experience and the reasons why we chose Angular. For context, the project is a web application used by doctors and patients. It's a medical platform designed to help doctors manage their patients' health.
+
+The project began in late 2019. The initial members of the team were mostly backend (BE) oriented, with experience in Java and Spring. Angular was a logical choice for us because its mental model is similar (i.e., class components, services, dependency injection) and the language, TypeScript, is also similar. As a small team, the assistance of BE developers was invaluable, making Angular a sound choice.
+
+Another important point is that we don't have dedicated architects. We are all equally responsible for the architecture of the project. When making a technical decision, we follow an RFC (Request for Comments) process. Typically, the person with the most experience and interest in the topic writes the RFC, and then we discuss it as a team to make a decision. This approach has its pros and cons. On the plus side, everyone is involved in the decision-making process and takes responsibility for the outcomes. However, it can be time-consuming, challenging to please everyone, and sometimes there's no clear right answer.
+
+In this case, Angular also made sense because it was quite mature and opinionated at the time. For instance, if you need a router, Angular provides a built-in one; for HTTP requests, there's a built-in service; and for testing, it's all built-in as well. Had we chosen React, we would have had to spend more time on the initial setup and make more decisions about the project's architecture.
+
+Moreover, Angular had been quite stable for a couple of years, with new updates being backward compatible (a lesson they likely learned from AngularJS). In contrast, React was constantly evolving (e.g., class components then functional components, hooks, server components, etc.), with many breaking changes.
 A great article on that topic is [this one](https://betterprogramming.pub/i-almost-got-fired-for-choosing-react-in-our-enterprise-app-846ea840841c).
 
 ### About frameworks
@@ -96,10 +102,13 @@ import Image8 from '~/media/from-greenfield-to-minefield/Slide8.jpeg?jsx';
 
 ## Choosing a testing framework
 
-As I mentioned earlier Angular comes with a built-in testing framework. It is called Karma. It is a test runner that runs in the browser.
-However, it spawns a new browser which is slow. So we decided to use Jest. It is a test runner that runs in the command line.
-It is easier to integrate with the CI/CD pipeline. It is supposed to be faster. It has a lot of features out of the box.
-To be honest I am not sure if we made the right choice as we spent a lot of time optimizing the tests and making them run faster.
+As I mentioned earlier, Angular comes with a built-in testing framework called Karma.
+Karma is a test runner that operates in the browser.
+However, it spawns a new browser instance for each test, which tends to be slow.
+Therefore, we decided to switch to Jest, a test runner that operates in the command line.
+Jest is generally easier to integrate with CI/CD pipelines and is reputed to be faster. It also offers a lot of features right out of the box.
+
+To be honest, I'm not entirely sure if we made the right choice. We found ourselves spending a considerable amount of time optimizing the tests to run faster.
 
 import Image9 from '~/media/from-greenfield-to-minefield/Slide9.jpeg?jsx';
 
@@ -107,10 +116,15 @@ import Image9 from '~/media/from-greenfield-to-minefield/Slide9.jpeg?jsx';
   <Image9 />
 </p>
 
-A side note on testing. In my years of experience I see that often tests are often neglected.
-I've also been there done that. It becomes ugly after a while. Not gonna state the benefits of tests.
-But for large projects that grow and evolve and require refactoring tests are really helpful. Especially for the FE where verifuing the ui is hard enough. I can say that if you put the initial effort to setup the testing framework and grow the test code a bit, it becomes easy to write tests.
-And it is never too late to set the tests and start covering old functionality together with the new one. I've also done that.
+In my experience, testing is often overlooked, but it's crucial, especially in large, evolving projects.
+Setting up a solid testing framework from the start makes writing tests easier and more effective.
+
+## Choosing repository structure
+
+The company grew, and I joined 🎉. We split into two teams and faced the decision of choosing an approach for our repository.
+We opted for a monorepo, bringing together the backend (BE) and frontend (FE) code.
+This strategy allowed us to move swiftly, enabling us to create merge requests (MRs) that encompassed changes in both areas.
+It facilitated easy code sharing, as we had a shared library for common code.
 
 import Image11 from '~/media/from-greenfield-to-minefield/Slide11.jpeg?jsx';
 
@@ -118,14 +132,10 @@ import Image11 from '~/media/from-greenfield-to-minefield/Slide11.jpeg?jsx';
   <Image11 />
 </p>
 
-The company grew. I joined 🎉. Two teams were formed. We had to choose an approach for the repo.
-We decided to go with monorepo. We had the BE and FE together.
-As we wanted to move fast this way we could do MRs containing changes in both the places.
-Sharing code between the two was easy. We had a shared library where we put common code.
-We went with nx as a tool to manage the monorepo.
-It has some nice features like enforcing module boundaries, dependency graph, building and testing only the affected projects.
-And the configuration is quite simple. You just have to add the project to the nx.json file and you are good to go.
-Also there is linting and formatting out of the box.
+We chose nx as our tool to manage the monorepo.
+It offers several beneficial features, such as enforcing module boundaries, creating a dependency graph, and building and testing only the projects affected by changes.
+The configuration process is straightforward - you simply add your project to the nx.json file, and you're all set.
+Additionally, nx provides linting and formatting right out of the box.
 
 ```json
 /* nx.json */
@@ -165,19 +175,20 @@ Also there is linting and formatting out of the box.
 ]
 ```
 
-The team continued growing. We started working on a new part of the product . We had to add another project.
-We needed to share code between the projects so we just added a shared library where we put common code.
-This way we could quickly reuse components, srevices, etc...
+## Testing
 
-Surely, this approach wouldn't scale well. Although it was easy at first to keep the pace it presented some chalenges.
-One problem that we hit shortly was regarding the tests.
-When it comes to testing in Angular there are a couple of approaches.
-You could either do pure unit tests where you test the component in isolation. You mock the dependencies and test the component logic.
-Or you could do integration tests where you test the component with its dependencies. You mock the http requests and test the component in the context of the app.
-A lot of times integration tests made more sense to us. We wanted to test the component in the context of the app. We wanted to test the interactions between the components.
-However, this approach had a drawback. We had to import the modules that the component depends on. And if the component depends on a lot of modules this could be cumbersome.
-So the easiset approach was to just import the shared module. This way we could import all the dependencies in one place. Unfortunately, this way we were importing a lot of stuff that we didn't need.
-And the started to become pretty obvious
+As our team grew, we began developing a new part of the product and needed to add another project.
+To make it easier, we created a shared library for common code, so we could quickly reuse components, services, etc.
+
+But this method had its limits. It was fine at first, but as we grew, it started to cause some problems, especially with testing.
+In Angular, you can do two kinds of tests. One is pure unit tests where you test just the component by itself, mocking the parts it depends on.
+The other is integration tests where you test the component with all its connected parts, like mocking HTTP requests in the real app setting.
+We often found integration tests more useful because they let us see how components worked together in the app.
+
+The trouble was, for integration tests, we had to bring in all the modules a component used.
+This got tough when a component used a lot of modules.
+The easiest way seemed to be using the shared module, so we could get all dependencies in one go.
+But this meant we were bringing in a bunch of stuff we didn't really need, and that problem started to become pretty obvious...
 
 import Image14 from '~/media/from-greenfield-to-minefield/Slide14.jpeg?jsx';
 
@@ -185,11 +196,10 @@ import Image14 from '~/media/from-greenfield-to-minefield/Slide14.jpeg?jsx';
   <Image14 />
 </p>
 
-So, the takeaway here is that you need to overlook the tests and make sure the execution time is reasonable. And if it is growing, why?
-In our case we had to refactor the tests and make sure we are importing only the modules that we need.
-And we had to become more strict about doing mr reviews of unit tests and making sure we are not importing unnecessary modules.
-Also with the monorepo approach we had to be careful about the dependencies between the projects.
-Suddenly the shared library became a bin where we put everything.
+The main lesson for us was to keep a close eye on our tests, especially how long they take to run.
+If the test time starts increasing, we need to understand why.
+We found ourselves having to redo our tests, making sure we only used the modules we really needed.
+We also got stricter with reviewing merge requests for unit tests, to avoid including modules we didn't need.
 
 import Image15 from '~/media/from-greenfield-to-minefield/Slide15.jpeg?jsx';
 
@@ -197,7 +207,12 @@ import Image15 from '~/media/from-greenfield-to-minefield/Slide15.jpeg?jsx';
   <Image15 />
 </p>
 
-Anyhow this whole library strategy started to "shine" we had to add yet another project.
+## Library strategy
+
+With our monorepo setup, we had to be extra careful about how projects depended on each other.
+Our shared library turned into a kind of catch-all place where everything ended up.
+
+Anyhow, this big-brain library strategy started to "shine" when we had to add yet another project.
 
 import Image16 from '~/media/from-greenfield-to-minefield/Slide16.jpeg?jsx';
 
@@ -205,7 +220,7 @@ import Image16 from '~/media/from-greenfield-to-minefield/Slide16.jpeg?jsx';
   <Image16 />
 </p>
 
-Now the shared library started to become a mess. There were stuff that Project1 and Project2 needed but Project3 didn't and vice versa.
+Now, the shared library started to become a mess. There was stuff that Project1 and Project2 needed but Project3 didn't, and vice versa.
 
 import Image17 from '~/media/from-greenfield-to-minefield/Slide17.jpeg?jsx';
 
@@ -213,7 +228,7 @@ import Image17 from '~/media/from-greenfield-to-minefield/Slide17.jpeg?jsx';
   <Image17 />
 </p>
 
-We had to split the shared library into two. One for sharing stuff across all projects and the other one for sharing between projects.
+We needed to divide the shared library into two parts: one for sharing resources across all projects, and the other for sharing between specific projects.
 
 import Image18 from '~/media/from-greenfield-to-minefield/Slide18.jpeg?jsx';
 
@@ -221,12 +236,11 @@ import Image18 from '~/media/from-greenfield-to-minefield/Slide18.jpeg?jsx';
   <Image18 />
 </p>
 
-This aproach wouldn't scale well. Although it was easy at first to keep the pace it presented some chalenges.
+This approach wouldn't scale well. Although it was easy at first to keep up the pace, it presented some challenges.
 We were finally forced to rethink our strategy.
 
 To sum up the takeaways:
-One big shared library is definetly not the way to go if you want to scale.
-You are not only importing things you don't need but also makes hard to find stuff.
+Having one large shared library is definitely not the way to go if you want to scale. You end up not only importing things you don't need but also making it hard to find stuff.
 
 import Image19 from '~/media/from-greenfield-to-minefield/Slide19.jpeg?jsx';
 
@@ -244,14 +258,11 @@ import Image21 from '~/media/from-greenfield-to-minefield/Slide21.jpeg?jsx';
   <Image21 />
 </p>
 
-My personal expereince with that approach was the most extreme one:
-One library per component.
-Separated in a different repo.
-Exposed as an npm package in an internal registry.
+My personal experience with that approach was quite extreme: one library per component, each separated into a different repo and exposed as an npm package in an internal registry.
 
-And it was hell to develop test and maintain. I remember the npm link would often not work as expected. Versioning was not clear. Release process was cumbersome.
-And what would end up happenning is that at the end of the day every consumer needed the latest version anyways.
-I guess the others had similar experience and we decided to go with a different approach.
+It was a nightmare to develop, test, and maintain. I recall the npm link often not working as expected. Versioning wasn't clear, and the release process was cumbersome.
+In the end, it typically turned out that every consumer needed the latest version anyway.
+I believe others had similar experiences, leading us to decide on a different approach.
 
 import Image22 from '~/media/from-greenfield-to-minefield/Slide22.jpeg?jsx';
 
@@ -259,11 +270,11 @@ import Image22 from '~/media/from-greenfield-to-minefield/Slide22.jpeg?jsx';
   <Image22 />
 </p>
 
-We evaluated the DDD (Domain driven design) appraoch since we were already using it in some places in the BE.
-The good thing about it is that it is easy to separate the domain logic. But only when you have clearly defined context boundries.
-In our case we feared that we would end up with a lot of overhead.
-And that we would often have to refactor and move code around just for the sake of fitting the DDD approach.
-So we decided to check the nx approach.
+We evaluated the DDD (Domain-Driven Design) approach, as we were already using it in some areas of the backend.
+The advantage of DDD is its ease in separating domain logic, but this is effective only with clearly defined context boundaries.
+In our case, we were concerned about the potential for excessive overhead.
+We feared frequent refactoring and moving code around just to align with the DDD principles.
+Therefore, we decided to explore the nx approach.
 
 import Image23 from '~/media/from-greenfield-to-minefield/Slide23.jpeg?jsx';
 
@@ -271,12 +282,13 @@ import Image23 from '~/media/from-greenfield-to-minefield/Slide23.jpeg?jsx';
   <Image23 />
 </p>
 
-We would have libraries separated by context. More specifically we would have feature, ui, data acess and util libraries.
-This way if we have some clearly defined bounded context we can extract it into a fully functional feature library.
-Otherwise we can share reusable blocks into ui and data access libraries. This sounded like a good middle ground.
+We would organize libraries by context. More specifically, we would have feature, UI, data access, and utility libraries.
+This way, if we have some clearly defined bounded contexts, we can encapsulate them into fully functional feature libraries.
+Otherwise, we can distribute reusable blocks across UI and data access libraries.
+This approach seemed like a good middle ground.
 
-The takeaways here are: once you need to share code between projects you need to think about structure.
-If you don't then you are just posponing the problem.
+The key takeaway here is: once you need to share code between projects, it's crucial to think about structure.
+If you don't, you're merely postponing the problem.
 
 import Image24 from '~/media/from-greenfield-to-minefield/Slide24.jpeg?jsx';
 
@@ -284,8 +296,10 @@ import Image24 from '~/media/from-greenfield-to-minefield/Slide24.jpeg?jsx';
   <Image24 />
 </p>
 
-We were back on track and we continued developing features. We had a functional part of the product. It was time to test it with real users.
-This would verify our assumptions and help us prioritize the next features.
+## Real-World Testing
+
+We got back on track and continued developing features, resulting in a functional part of the product.
+It was then time to test it with real users. This step was crucial to verify our assumptions and guide us in prioritizing upcoming features.
 
 import Image25 from '~/media/from-greenfield-to-minefield/Slide25.jpeg?jsx';
 
@@ -294,9 +308,9 @@ import Image25 from '~/media/from-greenfield-to-minefield/Slide25.jpeg?jsx';
 </p>
 
 We didn't have to wait long before we got the first unexpected feedback.
-It turned out the internet was not as realiable in the medical centers as we thought.
-We had to improve the performance of the app. We had to make sure it works with bad internet connection.
-Two areas we could improve were load times and request timeouts.
+It became apparent that internet reliability in the medical centers wasn't as high as we had anticipated.
+Consequently, we needed to enhance the app's performance, ensuring it functioned smoothly even with poor internet connections.
+Specifically, we focused on improving load times and managing request timeouts.
 
 import Image26 from '~/media/from-greenfield-to-minefield/Slide26.jpeg?jsx';
 
@@ -304,13 +318,13 @@ import Image26 from '~/media/from-greenfield-to-minefield/Slide26.jpeg?jsx';
   <Image26 />
 </p>
 
-Best would be to improve the FCP (First Contentful Paint). And what better place to start than the bundle size.
-When we investigated the bundle size there were a lot of surprises.
-It turned out that ~20% of the bundle size was coming from moment.js because the way we were importing it was not tree-shakeable.
-So all of the bundles for all locales were included.
-Also because we were not using es6 imports for some of the npm packages we were using we had to include the whole package (i.e. rxjs and lodash).
-Which would make another ~7% of the bundle size.
-So in total we could reduce the bundle size by ~27% just by using es6 imports and tree-shaking momentjs properly.
+Improving the FCP (First Contentful Paint) was a top priority, and a logical starting point was the bundle size.
+Our investigation into the bundle size revealed several surprises.
+Notably, about 20% of the bundle size came from moment.js, as our import method wasn't tree-shakeable.
+This meant we were including all the locales in our bundles.
+Additionally, for some of the npm packages like rxjs and lodash, not using es6 imports meant we had to include the entire package.
+These accounted for another approximately 7% of the bundle size.
+Therefore, by switching to es6 imports and properly tree-shaking moment.js, we could potentially reduce our bundle size by around 27%.
 
 import Image27 from '~/media/from-greenfield-to-minefield/Slide27.jpeg?jsx';
 
@@ -318,11 +332,10 @@ import Image27 from '~/media/from-greenfield-to-minefield/Slide27.jpeg?jsx';
   <Image27 />
 </p>
 
-Another way to improve the UX is to provide faster FP (First Paint).
-We could do that by using SSR (Server Side Rendering). With SSR there comes a lot of complexity.
-You have to have a node server that renders the app. You have to work around the browser APIs. You have to be cautios using urls and so on.
-We could also do that by manually inlining the critical css and js.
-We decided to go with the second approach as it was easier to implement and maintain.
+Another method to enhance UX is by achieving a faster FP (First Paint).
+One option is using SSR (Server Side Rendering), but it introduces considerable complexity.
+It requires a node server to render the app, necessitates working around browser APIs, and calls for cautious handling of URLs, among other challenges.
+Alternatively, we could manually inline the critical CSS and JS. We opted for this second approach, as it was simpler to implement and maintain.
 
 import Image28 from '~/media/from-greenfield-to-minefield/Slide28.jpeg?jsx';
 
@@ -330,8 +343,9 @@ import Image28 from '~/media/from-greenfield-to-minefield/Slide28.jpeg?jsx';
   <Image28 />
 </p>
 
-Another area for improvement was request timeouts. At first if a request times out we just showed a generic error so the user wouldn't know the cause of the problem.
-We decided to implement linear backoff. This way we would retry the request a couple of times before showing the error.
+Another area for improvement involved request timeouts.
+Initially, if a request timed out, we displayed a generic error, leaving the user unaware of the specific problem.
+To address this, we decided to implement a linear backoff strategy. This approach allowed us to retry the request a few times before presenting the error to the user.
 
 import Image29 from '~/media/from-greenfield-to-minefield/Slide29.jpeg?jsx';
 
@@ -347,13 +361,12 @@ intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEven
 }
 ```
 
-The takeaways:
+The Takeaways:
 
-- revise bundle size everytime you add a new npm package;
-- keep an eye on core web vitals;
+- Regularly review the bundle size every time you add a new npm package.
+- Stay vigilant about core web vitals.
 
-and another favorite quote of mine:
-
+And to share another favorite quote of mine (from the same blog post I first linked to):
 _"Tight feedback loops are magic: live reloading is magical. Hot module replacement less so. With live reload, your development browser automatically reloads your dev page when your code changes. If you suck and your page loads slowly, then you suffer. Hot module replacement hides the pain and lets you pass the suffering onto the user."_
 
 import Image30 from '~/media/from-greenfield-to-minefield/Slide30.jpeg?jsx';
@@ -362,9 +375,11 @@ import Image30 from '~/media/from-greenfield-to-minefield/Slide30.jpeg?jsx';
   <Image30 />
 </p>
 
-The project was growing. We had a lot of features. We had a lot of components. We had a lot of services.
-We hit our first comlicated state management problem.
-So far we've used the most basic approach. We had a service that kept the state and exposed it as an observable.
+## State management
+
+The project was expanding rapidly. We were adding numerous features, components, and services.
+Eventually, we encountered our first complex state management issue.
+Up until then, we had used a basic approach: employing a service that maintained the state and exposed it as an observable.
 
 ```ts
 export class StateService {
@@ -376,8 +391,9 @@ export class StateService {
 }
 ```
 
-However, we found ourselves on a page where we had to enhance pdf documents. We had to link and categorize pages, leave notes, create entities for each page, etc...
-So our simple appriach beacame poluted with complicated rxjs statements. There were no set rules (i.e. no immutablity of the state).
+However, we faced a situation where we needed to enhance PDF documents, which involved linking and categorizing pages, adding notes, creating entities for each page, and more.
+This task turned our simple approach into one cluttered with complex RxJS statements.
+We lacked set rules, such as ensuring the immutability of the state, handling side effects and so on.
 
 import Image33 from '~/media/from-greenfield-to-minefield/Slide31.jpeg?jsx';
 
@@ -385,12 +401,11 @@ import Image33 from '~/media/from-greenfield-to-minefield/Slide31.jpeg?jsx';
   <Image33 />
 </p>
 
-So we had to rethink our approach and find something that would help us in such complicated scenarios.
-We all had previous eperience with Redux in the form of ngrx.
-We didn't like it - too much boilerplate, too much ceremony, too much code for simple things.
-It requires that all of the engineers know it well and use it properly.
-And even then it is easy to create an unbearable mess.
-So we decided to look for an alternative.
+We had to rethink our approach to find a solution suitable for such complicated scenarios.
+All of us had previous experience with Redux in the form of ngrx, but we weren't fans of it.
+There was too much boilerplate, too much ceremony, and an excessive amount of code for simple tasks.
+It required all engineers to be well-versed in its use and even then, it was easy to create a chaotic mess.
+So, we decided to search for an alternative.
 
 import Image34 from '~/media/from-greenfield-to-minefield/Slide32.jpeg?jsx';
 
@@ -398,7 +413,7 @@ import Image34 from '~/media/from-greenfield-to-minefield/Slide32.jpeg?jsx';
   <Image34 />
 </p>
 
-We found akita which was lightweight, didn't require a lot of boilerplate and it played well with Angular's services.
+We discovered Akita, which was lightweight, required minimal boilerplate, and integrated well with Angular's services.
 
 import Image35 from '~/media/from-greenfield-to-minefield/Slide33.jpeg?jsx';
 
@@ -406,8 +421,10 @@ import Image35 from '~/media/from-greenfield-to-minefield/Slide33.jpeg?jsx';
   <Image35 />
 </p>
 
-Overall I'm glad we survived so long without management library. Living through the pain of state management thought us what are the gotchas
-and what are the things that we need to look for in a library.
+Overall, I'm glad we managed to survive for so long without a dedicated state management library.
+Navigating through the complexities and challenges of state management without this tool taught us invaluable lessons.
+We experienced firsthand the pitfalls to watch out for and gained a deeper understanding of the essential features and functionalities we truly needed in a library.
+This journey wasn't just about coping with the immediate difficulties; it was a learning curve that equipped us with the insights to make more informed decisions in selecting the right tools for our needs in the future.
 
 import Image40 from '~/media/from-greenfield-to-minefield/Slide40.jpeg?jsx';
 
@@ -415,11 +432,11 @@ import Image40 from '~/media/from-greenfield-to-minefield/Slide40.jpeg?jsx';
   <Image40 />
 </p>
 
-- There were a lot of other forks on the road along the way. How to do styling, logging, observability?
-- Shall we use MFE (Micro Frontends)?
-- How to implement our own design system? (We did btw. I will tell you about it in another article).
-- How to improve UX? What are available rendering strategies? (I also have an article on that topic).
-- and so on and so on...
+Along the way, we encountered numerous other decisions and challenges.
+These included questions like how to handle styling, logging, and observability, or whether to use MFE (Micro Frontends).
+We even tackled implementing our own design system (which I'll discuss in another article) and delved into improving UX and exploring different rendering strategies (also covered in a separate article).
+The journey was filled with such considerations.
 
-Hopefully, the takeaways from this article will help you avoid some of the mistakes we made.
-And your greenfield project will stay green for longer. And if it becomes a minefield you will know how to get out of it.
+I hope the insights shared in this article will help you sidestep some of the mistakes we made.
+Ideally, your greenfield project will remain flourishing for a longer period.
+And even if it does turn into a minefield, now you'll have a better idea of how to navigate through it.

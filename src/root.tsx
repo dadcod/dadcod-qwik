@@ -52,7 +52,7 @@ export default component$(() => {
       </head>
       <body
         lang="en"
-        class="text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-gray-900 antialiased flex flex-col min-h-screen"
+        class="text-gray-900 dark:text-white tracking-tight bg-white dark:bg-gray-900 antialiased flex flex-col min-h-screen"
       >
         <RouterOutlet />
       </body>

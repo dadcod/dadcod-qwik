@@ -28,10 +28,5 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
         </div>
       ))}
     </div>
-    // <ul>
-    //   {frontmatter.tags.map((tag: string) => (
-    //     <li key={`tag-${tag}`}>{tag}</li>
-    //   ))}
-    // </ul>
   );
 });

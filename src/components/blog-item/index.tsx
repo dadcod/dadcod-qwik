@@ -6,10 +6,6 @@ import { component$ } from '@builder.io/qwik';
 export interface BlogItemProps {
   item: Post;
 }
-export interface Tag {
-  name: string;
-  color: string;
-}
 
 export default component$<BlogItemProps>(({ item }) => {
   return (
@@ -21,7 +17,7 @@ export default component$<BlogItemProps>(({ item }) => {
           </div>
           <div class="px-3 pt-4 pb-6 text-center justify-center">
             <h2 class="text-xl font-semibold">{item.title}</h2>
-
+            <div class="mt-1 text-xs text-gray-400">{item.publishDate.toLocaleDateString()}</div>
             <div class="py-2">
               <Tags tags={item.tags} />
             </div>

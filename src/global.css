@@ -26,7 +26,7 @@
     @apply rounded-lg;
   }
   p {
-    @apply text-lg py-3 font-medium;
+    @apply text-lg py-3;
   }
 }
 @layer components {
@@ -37,23 +37,6 @@
      bg-clip-text 
      text-transparent;
   }
-}
-
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
-
-:root {
-  --qwik-light-blue: #18b6f6;
-  --qwik-light-purple: #ac7ff4;
-  --qwik-dark-purple: #713fc2;
-  --qwik-dirty-black: #1d2033;
-  --qwik-dark-background: #151934;
-  --qwik-dark-text: #ffffff;
 }
 
 html {

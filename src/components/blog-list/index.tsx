@@ -4,8 +4,7 @@ import BlogItem from '../blog-item';
 import type { Post } from '~/utils/posts';
 import { component$ } from '@builder.io/qwik';
 
-export default component$<{posts: Post[]}>(({posts}) => {
- 
+export default component$<{ posts: Post[] }>(({ posts }) => {
   return (
     <>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-3">

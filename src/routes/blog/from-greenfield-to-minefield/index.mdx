@@ -187,6 +187,12 @@ Additionally, nx provides linting and formatting right out of the box.
 As our team grew, we began developing a new part of the product and needed to add another project.
 To make it easier, we created a shared library for common code, so we could quickly reuse components, services, etc.
 
+import Image12 from '~/media/from-greenfield-to-minefield/Slide12.jpeg?jsx';
+
+<p align="center">
+  <Image12 />
+</p>
+
 But this method had its limits. It was fine at first, but as we grew, it started to cause some problems, especially with testing.
 In Angular, you can do two kinds of tests. One is pure unit tests where you test just the component by itself, mocking the parts it depends on.
 The other is integration tests where you test the component with all its connected parts, like mocking HTTP requests in the real app setting.
@@ -386,6 +392,13 @@ import Image30 from '~/media/from-greenfield-to-minefield/Slide30.jpeg?jsx';
 
 The project was expanding rapidly. We were adding numerous features, components, and services.
 Eventually, we encountered our first complex state management issue.
+
+import Image31 from '~/media/from-greenfield-to-minefield/Slide31.jpeg?jsx';
+
+<p align="center">
+  <Image31 />
+</p>
+
 Up until then, we had used a basic approach: employing a service that maintained the state and exposed it as an observable.
 
 ```ts
@@ -414,7 +427,7 @@ There was too much boilerplate, too much ceremony, and an excessive amount of co
 It required all engineers to be well-versed in its use and even then, it was easy to create a chaotic mess.
 So, we decided to search for an alternative.
 
-import Image34 from '~/media/from-greenfield-to-minefield/Slide32.jpeg?jsx';
+import Image34 from '~/media/from-greenfield-to-minefield/Slide34.jpeg?jsx';
 
 <p align="center">
   <Image34 />
@@ -443,6 +456,12 @@ Along the way, we encountered numerous other decisions and challenges.
 These included questions like how to handle styling, logging, and observability, or whether to use MFE (Micro Frontends).
 We even tackled implementing our own design system (which I'll discuss in another article) and delved into improving UX and exploring different rendering strategies (also covered in a separate article).
 The journey was filled with such considerations.
+
+import Image42 from '~/media/from-greenfield-to-minefield/Slide42.jpeg?jsx';
+
+<p align="center">
+  <Image42 />
+</p>
 
 I hope the insights shared in this article will help you sidestep some of the mistakes we made.
 Ideally, your greenfield project will remain flourishing for a longer period.

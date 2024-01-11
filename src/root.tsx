@@ -31,19 +31,19 @@ export default component$(() => {
       <head>
         <script
           dangerouslySetInnerHTML={`
-        (function() {
-          function setTheme(theme) {
-            document.documentElement.className = theme;
-            localStorage.setItem('theme', theme);
-          }
-          var theme = localStorage.getItem('theme');
-          if (theme) {
-            setTheme(theme);
-          } else {
-            setTheme('light');
-          }
-        })();
-      `}
+          (function() {
+            function setTheme(theme) {
+              document.documentElement.className = theme;
+              localStorage.setItem('theme', theme);
+            }
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+              setTheme(theme);
+            } else {
+              setTheme('light');
+            }
+          })();
+        `}
         ></script>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />

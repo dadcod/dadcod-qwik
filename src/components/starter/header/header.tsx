@@ -19,16 +19,16 @@ export default component$(() => {
   console.log(loc.url.pathname);
 
   return (
-    <header class="sticky top-0 z-40 md:px-3 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
+    <header class="sticky max-w-screen-lg top-0 z-40 md:px-8 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
       <div class="inset-0 absolute"></div>
-      <div class=" mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
+      <div class="mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
         <div class="logo">
           <a class="w-4 h-4" href="/" title="qwik">
             <Logo style={{ width: 40, height: 40 }} />
           </a>
         </div>
-        <nav class="items-center md:w-auto w-full hidden md:flex md:mx-5 md:overflow-x-auto md:overflow-y-visible overflow-x-hidden overflow-y-auto text-default">
-          <ul class="flex flex-col gap-8 font-medium md:flex-row md:self-center md:text-[0.9375rem] md:w-auto text-xl tracking-[0.01rem] w-full">
+        <nav class="items-center w-full flex mx-5 overflow-x-hidden overflow-y-auto text-default">
+          <ul class="flex flex-row mx-auto gap-8 font-medium self-center text-base w-auto tracking-[0.01rem] ">
             {sections.map((section) => (
               <>
                 <li class=" m-0 p-0 text-md uppercase font-bold">

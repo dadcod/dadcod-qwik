@@ -22,7 +22,7 @@ export default component$(() => {
     <>
       <div class="md:py-20 py-12 lg:flex lg:gap-8 lg:h-4/6 lg:items-center lg:py-0 flex-col">
         <div class="lg:flex lg:gap-8 lg:h-4/6 lg:items-center lg:py-0 ">
-          <div class="mx-auto  basis-1/2 gap-10 flex flex-col">
+          <div class="mx-auto basis-1/2 gap-10 flex flex-col">
             <h1>
               <span class="font-semibold">
                 Hello, I'm{' '}
@@ -38,33 +38,44 @@ export default component$(() => {
             </h2>
             <div class="flex gap-3">
               <a
-                href="https://twitter.com/dad_cod_"
+                href="https://www.youtube.com/@dadcodes"
                 target="_blank"
-                class="bg-gradient-to-br from-emerald-500 to-cyan-400 bg-clip-text text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
-              >
-                X
-              </a>
-              <a
-                href="https://twitter.com/dad_cod_"
-                target="_blank"
-                class="bg-gradient-to-br from-red-500 to-orange-800 bg-clip-text text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-red-500 to-orange-800 dark:from-red-500 dark:to-orange-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
               >
                 YouTube
               </a>
               <a
-                href="https://twitter.com/dad_cod_"
+                href="https://medium.com/@dadcod"
                 target="_blank"
-                class="bg-gradient-to-br from-neutral-200 to-neutral-800 bg-clip-text text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-neutral-300 to-neutral-700 dark:from-neutral-200 dark:to-neutral-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
               >
                 Medium
+              </a>
+              <a
+                href="https://substack.com/@dadcod"
+                target="_blank"
+                class="bg-gradient-to-br from-orange-400 to-orange-900 dark:from-orange-400 dark:to-orange-900 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+              >
+                Substack
+              </a>
+              <a
+                href="https://substack.com/@dadcod"
+                target="_blank"
+                class="bg-gradient-to-br from-slate-500 to-slate-900 dark:from-slate-300 dark:to-slate-700 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+              >
+                Substack
+              </a>
+              <a
+                href="https://twitter.com/dad_cod_"
+                target="_blank"
+                class="bg-gradient-to-br from-emerald-500 to-cyan-400 dark:from-emerald-500 dark:to-cyan-400  bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+              >
+                X
               </a>
             </div>
           </div>
           <div class="basis-1/2 flex flex-col">
-            <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md " />
-            <div class="self-center">
-              <span id="derka" />
-            </div>
+            <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md" style={{ width: 464, height: 449 }} />
           </div>
         </div>
         <div class="py-3 w-full [&>*]:w-full">

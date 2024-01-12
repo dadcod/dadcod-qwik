@@ -8,7 +8,7 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
     return null;
   }
 
-  const tagColorMapping: { [key: string]: { text: string; bg: string } } = {
+  const tagColorMapping: { [key: string]: { text: string; bg: string } }  = {
     angular: { text: 'text-red-400', bg: 'bg-red-900' },
     default: { text: 'text-slate-400', bg: 'bg-slate-700' },
   };
@@ -21,8 +21,8 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
         <div
           key={tag}
           class={`rounded-md self-center px-2 py-1 text-xs font-semibold 
-          ${tagColorMapping[tag]?.text || tagColorMapping['default'].text} 
-          ${tagColorMapping[tag]?.bg || tagColorMapping['default'].bg}`}
+          ${tagColorMapping[tag]?.text || tagColorMapping['default']?.text} 
+          ${tagColorMapping[tag]?.bg || tagColorMapping['default']?.bg}`}
         >
           {tag}
         </div>

@@ -1,10 +1,11 @@
 import './global.css';
 
 import { $, component$ } from '@builder.io/qwik';
-import { ImageTransformerProps, useImageProvider } from 'qwik-image';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 
+import type { ImageTransformerProps } from 'qwik-image';
 import { RouterHead } from './components/router-head/router-head';
+import { useImageProvider } from 'qwik-image';
 
 export default component$(() => {
   /**

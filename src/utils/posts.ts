@@ -3,18 +3,19 @@ import matter from 'gray-matter';
 
 const BLOG_DIR = 'src/routes/blog';
 
-const load = () => {
+const load = (): Promise<Post[]> => {
   const files = fs.readdirSync(BLOG_DIR, { recursive: true });
   const posts = Promise.all(
     files
-      .filter((filename) => filename.endsWith('.mdx'))
+      .filter((filename) => (filename as string).endsWith('.mdx'))
       .map(async (filename) => {
-        const slug = filename.replace('.mdx', '');
+        const slug = (filename as string).replace('.mdx', '');
         return await findPostBySlug(slug);
       })
+      .filter(Boolean)
   );
 
-  return posts;
+  return posts as Promise<Post[]>;
 };
 export interface Post {
   /** A unique ID number that identifies a post. */
@@ -55,20 +56,25 @@ export interface Post {
   readingTime?: number;
 }
 
-let _posts: Post[];
+let _posts: Post[] | undefined;
 
 /** */
 export const fetchPosts = async (): Promise<Post[]> => {
-  _posts = _posts || load();
+  _posts = _posts || (await load());
 
-  return await _posts;
+  return _posts;
 };
 
 /** */
 export const findLatestPosts = async ({ count, page }: { count?: number; page?: number } = {}): Promise<Post[]> => {
   const _count = count || 4;
   const _page = page || 1;
-  const posts = await fetchPosts();
+  let posts;
+  try {
+    posts = await fetchPosts();
+  } catch (e) {
+    console.log(e);
+  }
 
   return posts ? posts.slice((_page - 1) * _count, (_page - 1) * _count + _count) : [];
 };

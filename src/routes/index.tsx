@@ -74,7 +74,7 @@ export default component$(() => {
               </a>
             </div>
           </div>
-          <div class="basis-1/2 flex flex-col my-6 md:m-0">
+          <div class="basis-1/2 flex flex-col my-6 lg:m-0">
             <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md max-w-[449px]" />
           </div>
         </div>
@@ -97,11 +97,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'DadCod',
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: 'DadCod website',
     },
   ],
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import { component$ } from '@builder.io/qwik';
 import { useDocumentHead } from '@builder.io/qwik-city';
 
@@ -8,7 +9,7 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
     return null;
   }
 
-  const tagColorMapping: { [key: string]: { text: string; bg: string } }  = {
+  const tagColorMapping: { [key: string]: { text: string; bg: string } } = {
     angular: { text: 'text-red-400', bg: 'bg-red-900' },
     default: { text: 'text-slate-400', bg: 'bg-slate-700' },
   };

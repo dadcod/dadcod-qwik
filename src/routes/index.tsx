@@ -27,7 +27,7 @@ export default component$(() => {
               <span class="font-semibold">
                 Hello, I'm{' '}
                 <span class="bg-gradient-to-br from-emerald-500 to-cyan-400 bg-clip-text text-transparent">DadCod</span>
-                (Rosen Petkov)
+                &nbsp;(Rosen Petkov)
               </span>
             </h1>
             <h2>
@@ -36,46 +36,46 @@ export default component$(() => {
               platform to share fresh insights and learn alongside you. Embracing the beginner's mind, I always ask
               questions and invite you to join the journey of exploration and memeing.
             </h2>
-            <div class="flex gap-3">
+            <div class="flex gap-3 min-w-xs" style={{ flexFlow: 'row wrap' }}>
               <a
                 href="https://www.youtube.com/@dadcodes"
                 target="_blank"
-                class="bg-gradient-to-br from-red-500 to-orange-800 dark:from-red-500 dark:to-orange-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-red-500 to-orange-800 dark:from-red-500 dark:to-orange-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all flex-1"
               >
                 YouTube
               </a>
               <a
                 href="https://medium.com/@dadcod"
                 target="_blank"
-                class="bg-gradient-to-br from-neutral-300 to-neutral-700 dark:from-neutral-200 dark:to-neutral-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-neutral-300 to-neutral-700 dark:from-neutral-200 dark:to-neutral-800 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all flex-1"
               >
                 Medium
               </a>
               <a
                 href="https://substack.com/@dadcod"
                 target="_blank"
-                class="bg-gradient-to-br from-orange-400 to-orange-900 dark:from-orange-400 dark:to-orange-900 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-orange-400 to-orange-900 dark:from-orange-400 dark:to-orange-900 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all flex-1"
               >
                 Substack
               </a>
               <a
                 href="https://substack.com/@dadcod"
                 target="_blank"
-                class="bg-gradient-to-br from-slate-500 to-slate-900 dark:from-slate-300 dark:to-slate-700 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-slate-500 to-slate-900 dark:from-slate-300 dark:to-slate-700 bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all flex-1"
               >
                 Substack
               </a>
               <a
                 href="https://twitter.com/dad_cod_"
                 target="_blank"
-                class="bg-gradient-to-br from-emerald-500 to-cyan-400 dark:from-emerald-500 dark:to-cyan-400  bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all"
+                class="bg-gradient-to-br from-emerald-500 to-cyan-400 dark:from-emerald-500 dark:to-cyan-400  bg-clip-text !text-transparent text-l uppercase font-semibold hover:translate-y-1 transition-all flex-1"
               >
                 X
               </a>
             </div>
           </div>
-          <div class="basis-1/2 flex flex-col">
-            <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md" style={{ width: 464, height: 449 }} />
+          <div class="basis-1/2 flex flex-col my-6 md:m-0">
+            <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md max-w-[449px]" />
           </div>
         </div>
         <div class="py-3 w-full [&>*]:w-full">

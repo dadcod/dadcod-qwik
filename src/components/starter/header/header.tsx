@@ -16,10 +16,9 @@ export default component$(() => {
       id: 'projects',
     },
   ];
-  console.log(loc.url.pathname);
 
   return (
-    <header class="sticky max-w-screen-lg top-0 z-40 md:px-8 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
+    <header class="sticky max-w-screen-lg top-0 z-40 md:px-4 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
       <div class="inset-0 absolute"></div>
       <div class="mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
         <div class="logo">

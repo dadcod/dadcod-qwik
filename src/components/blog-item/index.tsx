@@ -21,7 +21,6 @@ export default component$<BlogItemProps>(({ item }) => {
             <div class="py-2">
               <Tags tags={item.tags} />
             </div>
-            <div class="mt-1 text-xs dark:text-gray-400 text-gray-800">{item.publishDate.toDateString()}</div>
             <div class="mt-2 text-sm">{item.excerpt}</div>
           </div>
         </div>

@@ -1,0 +1,270 @@
+---
+title: Building a design system
+excerpt:  I explore the evolution, key components, and practical challenges of creating a cohesive design system, offering valuable guidance for developers and designers alike.
+image: /images/minefield.png
+publishDate: 2022-11-10
+image:alt: A green field with a blue sky and clouds
+tags:
+  - angular
+  - structure
+  - state
+
+og:
+  - title: true
+    description:  I explore the evolution, key components, and practical challenges of creating a cohesive design system, offering valuable guidance for developers and designers alike.
+  - image: /images/minefield.png
+    image:alt: greenfield to wasteland
+---
+
+Hey youtube, it's me Rosen and I'm here to give you a talk that I gave at jsTalks Bulgaria 2022.
+It's about building a design system and how we did it at my company. I hope you enjoy it.
+
+Slide 3
+
+When I started researching the topic of design systems, I was surprised to find that there are so many different definitions of what a design system is.
+
+Slide 4
+
+And if you'd ask me what a design system if I would answer differently depending on what year you asked me.
+10 years ago I would have said that a design system is a css library or a style guide for writting css and structuring html.
+5 years ago I would have said that a design system is a set of components that you can use to build your application.
+In the recent years design systems like Material and Fluent became popular but their descriptions are all very vague and it sounds like the description not of a framework but a superhero entity.
+So let's try and define what a desing system is.
+
+For me as an engineer I could understand what a styleguid is for or what the css frameworks are for. And it is easy for an engineer to assume that A design system is a components library.
+But in a DS it should be that the components are coherently designed they have consistency. They are not build in a couple of different places and moved to a shared library.
+In a DS there is a clear guidance of how things should look. How they are implemented and fit together. What a component is used for and even more importantly what is should not be used for.
+
+Slide 5
+
+More than that for me DS is a common language for design and development. A good system empowers designers to code, and empowers engineers to design.
+I think I started sounding too vague so lets dive into the concrete details.
+
+Slide 6
+
+We mentioned the components and guidelines. And they are a good start. But there is more to a DS than that.
+
+Slide 7
+
+There is should be an even granural part that the compoents are biuld of.
+These are the tokens. Tokens are the smallest part of the design system. They are the building blocks of the components.
+The best definition i've heard is that they are Context agnostic primitive values that define visual styles.
+
+Slide 8
+
+On top of components we have page laoyts.
+The page layout block defines the structure of the page. It is the skeleton of the page. 
+It defines the grid and the spacing between the components. In order to have a consistent layout, we need to:
+**Know your use case.** Understand how the information on the page will be used.
+**Prioritize your content.** Organize your content to highlight the most important information.
+**Group related content together.** Make it efficient for users to work with the content.
+
+And on top of all that besides guidelines we have documentation and playgrounds.
+A good rule to follow is that if it isnt documented, it doesnt exist.
+And the playgrounds are the place where you can see the components in action. You can see how they are used and how they behave.
+
+Slide 9
+
+How does the user interact. What are the devices that are used. What are the environments. What is the time in which the user is interacting?
+
+Slide 10
+
+Let me spend a few minutes explaining interaction models and voice and tone and hopefully point out what is their importance.
+
+What is the interaction model?
+How does the user interact. What are the devices that are used. What are the environments. What is the time in which the user is interacting?
+
+For example in my company we build softtware for managing medical centers and patient engagement.
+The flow is that: before taking an exam the patient needs to fill a form. The platform sends an sms with preprations for the exam plus a link to the online form.
+The patient can fill only part of te forms online and the rest on paper in our center.
+There is also a screening form that the may need patient need to answer and the tehcnologist to fill.
+
+So there are are different environements, different devices, different mediums of communication through which the patient views our product.
+It is important to make him feel comfortable and confident in the product. The paper forms should look and feel like the online forms.
+This way the transition is smooth and the patient is not confused.
+
+Slide 11
+
+Using the prevois example we can see that the voice and tone of the product is very important too. We have totally different formats of communication.
+In the sms we need to be short and concise. In the forms we need to be thorough and clear. In the screening form we need to be empathetic and supportive.
+Thought there should be one language that biulds trust and confidence in the product.
+
+In the example on the slide the voice of the error message helps the product build trust, stand out, and be consistent with the users by bringing out the brand personality.
+The tone reflects different emotions in the error message such as empathy, and humour that add clarity and personal touch to the product.
+
+Slide 12
+
+Now that we have a better understanding of what a design system is, let's talk about should we build one.
+
+Slide 13
+
+The way to answer this question is to ask yourself a few questions. Are there villians lurking in the shadows of your project?
+Are there repeating problems that you are facing that you can't solve?
+A villain is a well framed and a well named problem
+In the case of design systems they are fairly clear
+Make the evils of the villains evident
+Crush them by bringing a hero
+
+
+Lets identify our villians
+Slide 14
+Inefficient development:
+* Building the same components again and again
+* Changes in multiple places instead of just one
+* Redesign is costly
+
+
+“...the inefficiencies that a medium \[sized\] team can roll with are catastrophically wasteful to a team of our size”
+
+
+Slide 16
+Insecurity
+
+* Lack of confidence when building and designing
+* What the best practices are?
+* Don't know whether components can be reused
+* Is there a component for my use case
+
+Slide 17
+How the components looks? How it plays inside a form? The form to the layout? And how these scenarios play out in different interaction models.
+
+Slide 18
+Inconsistenc
+y
+
+* Same user actions are done differently
+* Users lose confidence; they must relearn how to use your product
+
+
+Slide 19
+You need design support - deidcated team, freelances, someone who is interested
+Build a brand. Brand is important ->
+
+* Requires both good design and good development
+* Consensus and vision for consistency for the brand
+* Maintain and evolve as needs change or expands
+
+Slide 20
+Lets start with the main building block of the design system. The tokens.
+
+Slide 21
+Let's deep dive into tokens and see what they are and how they are used. 
+What's thier purpose and how they are used:
+* Efficiently manage Design Systems
+* Better translation from Design To Development
+* Maintain high consistency across product UI
+
+Let's walk through a collaboration scenario between a designer and a developer and see how tokens can help us.
+
+Slide 22
+
+Wihtout tokens engineers ask the designer to give us the color of the text. The deigner says it's Flat Onyx.
+This means nothing to the engineer. He needs to ask for the hex value. The designer says it's #FFB549.
+The engineer adds the color and moves on to the next task.
+A week later the designer changes the color to #FFB549. The engineer needs to change the color in 10 different places.
+
+Slide 23
+
+This is where a token comes in handy. The designer can define the color as Flat Onyx and the hex value as #FFB549.
+The engineer can use the token in his code and when the designer changes the color the engineer doesn't need to change anything.
+
+Slide 24
+
+We can define our global tokens.
+Values that can be tokenized are colors, typography, spacing, shadows, borders, and more.
+
+Slide 25
+
+Days go by and the engineers tirelessly implement new features. 
+We have buttons, toggles and checkboxes now, styled using the globla tokens.
+But the designer is not happy with the buttons. He wants to change the color of the text to white.
+The engineer opens the deisgns and Oh my stars! Now he has to go and manually change all of the styles for the button.
+
+Slide 26
+
+This is wehre another layer of tokens comes in handy. We can have different levels of alias tokens. 
+We can have semantic tokens and component tokens.
+Semantic tokens are tokens that are used in multiple components. For example the color of the text.
+Component tokens are tokens that are used only in one component. For example the color of the button text.
+This way we can affect either a all components or target a specific component.
+
+Slide 27
+
+It useful to have a convention for naming semantic tokens so that they are easily recognizable.
+For example we can use sentiment, usage, prominance and interaction to name our tokens.
+
+i.e. selected-text-default-color
+
+Slide 28
+
+In order for the engineer to not have to go and change the tokens in the code we can use a tool like style-dictionary.
+We can have the design tool (in our case figma) export the tokens in a json file and commit them to a repo.
+Then we can use style-dictionary to generate the tokens in the format that we need and do an automated commit to the repo.
+This way the engineer doesn't need to do anything. He just needs to pull the latest changes and he has the new tokens.
+
+Slide 29
+Now that we have our tokens we can start building our components.
+We need to have a clear definition of what the component is used for and what it is not used for.
+
+Slide 30
+
+Let's talk about API design. What is the API of a component?
+We need to define how the component is used. What are the inputs and what are the outputs.
+We need to be consistend with the namings. A good rules is to use prefixs in order to avoid name collisions.
+An also try to limit the number of inputs and outputs. 
+
+Slide 31
+
+Avoid passing functions or complex objects as inputs. 
+Think about when to use imperative vs configuration based APIs.
+
+Slide 32
+About dependencies:
+Limit or avoid other dependencies beyond framework
+Consider building things yourself or use headless components
+Be mindful of conflicts, inconsistencies
+
+Slide 33
+when it comes to tooling:
+Start with the tooling the framework provides
+Usually, best practices, optimizations, backward compatibility come out of the box
+
+Slide 34
+
+Regarding testing:
+Use rendering in unit tests
+Setup linting and formatting
+Template checking
+Input types
+Template safe navigation
+Naming
+
+Slide 35
+Schematics
+Installation
+Migration
+Generator
+
+Slide 37
+What else lives in the design system?
+Documentation
+Live code playground
+Usage examples
+Platform guidelines
+UX guidelines
+
+Slide 38
+Storybook
+Having a place where developers can play around without having to install something locally
+Usage examples Its one thing to check the bingings and events but another to actually see it in use
+What are the paradigms of your application – modals
+In isolation you think how to make reusable
+
+Slide 39
+Things to keep in mind
+Don't force apps to conform to your library
+Don't throw exceptions, handle gracefully
+Don't forget accessibility 
+Test for SSR early and often
+Don't add things before there are specific use cases for them
+Don’t touch DOM directly

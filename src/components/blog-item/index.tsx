@@ -8,7 +8,6 @@ export interface BlogItemProps {
 }
 
 export default component$<BlogItemProps>(({ item }) => {
-  console.log('item', item);
   return (
     <>
       <a class="hover:translate-y-1 no-underline" href={'/blog/' + item.id.split('/')[1] + '/'}>

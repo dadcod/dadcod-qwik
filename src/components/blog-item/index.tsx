@@ -11,7 +11,7 @@ export default component$<BlogItemProps>(({ item }) => {
   return (
     <>
       <a class="hover:translate-y-1 no-underline" href={'/blog/' + item.id.split('/')[1] + '/'}>
-        <div class="overflow-hidden rounded-md dark:bg-slate-800 bg-cyan-100 text-slate-900 dark:text-inherit text-center">
+        <div class="overflow-hidden rounded-md dark:bg-slate-800 bg-cyan-100 text-center">
           <div class="aspect-w-3 aspect-h-2">
             <Image layout="fullWidth" height={250} width={250} src={item.image} />
           </div>

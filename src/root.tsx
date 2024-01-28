@@ -51,10 +51,7 @@ export default component$(() => {
         <RouterHead />
         <ServiceWorkerRegister />
       </head>
-      <body
-        lang="en"
-        class="text-gray-900 dark:text-white tracking-tight bg-white dark:bg-gray-900 antialiased flex flex-col min-h-screen"
-      >
+      <body lang="en" class="tracking-tight bg-white dark:bg-gray-900 antialiased flex flex-col min-h-screen">
         <RouterOutlet />
       </body>
     </QwikCityProvider>

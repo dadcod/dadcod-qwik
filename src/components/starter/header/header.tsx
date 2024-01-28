@@ -20,7 +20,7 @@ export default component$(() => {
   return (
     <header class="sticky max-w-screen-lg top-0 z-40 md:px-4 flex-none mx-auto w-full border-b border-gray-50/0 transition-all ease-in-out backdrop-blur-md backdrop-opacity-99">
       <div class="inset-0 absolute"></div>
-      <div class="mx-auto max-w-7xl relative flex justify-between  py-3 text-default w-full">
+      <div class="mx-auto max-w-7xl relative flex justify-between p-3 text-default w-full">
         <div class="logo">
           <a class="w-4 h-4" href="/" title="qwik">
             <Logo style={{ width: 40, height: 40 }} />
@@ -31,7 +31,7 @@ export default component$(() => {
             {sections.map((section) => (
               <>
                 <li class=" m-0 p-0 text-md uppercase font-bold">
-                  <a class="dark:text-white text-black inline-block p-0 no-underline" href={`/${section.id}`}>
+                  <a class="inline-block p-0 no-underline" href={`/${section.id}`}>
                     <span class={'animated-button ' + (loc.url.pathname === `/${section.id}/` ? 'font-extrabold' : '')}>
                       <span>
                         {section.name.split('').map((letter, index) => (

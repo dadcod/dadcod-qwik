@@ -8,12 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.purple,
-        secondary: colors.sky,
-        link: {
-          dark: '#fff',
-          light: '#012',
-        },
+        dark: '#10b981',
+        light: '#012',
       },
       fontFamily: {
         sans: ["'Inter Variable'", ...defaultTheme.fontFamily.sans],

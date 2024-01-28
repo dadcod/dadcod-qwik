@@ -7,6 +7,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply text-light  dark:text-dark;
+  }
   h1 {
     @apply text-3xl;
   }
@@ -18,9 +21,6 @@
   }
   .blog h2 {
     @apply m-3 font-bold;
-  }
-  a {
-    @apply text-link-light dark:text-link-dark;
   }
   img {
     @apply rounded-lg;

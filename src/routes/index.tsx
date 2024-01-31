@@ -1,5 +1,6 @@
-import { component$, useStore, useTask$ } from '@builder.io/qwik';
+import { component$, useStore, useTask$, useVisibleTask$ } from '@builder.io/qwik';
 
+import BackImage from '~/media/real.png?jsx';
 import BlogList from '~/components/blog-list';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import FrontImage from '~/media/front-enh-nobg.png?jsx';
@@ -17,6 +18,19 @@ export default component$(() => {
       const posts = await fetchPosts();
       store.posts = posts.map((post: Post) => ({ ...post }));
     }
+  });
+
+  useVisibleTask$(() => {
+    document.querySelector('#front-image')?.addEventListener('mousemove', (e) => {
+      const imageWidth = (document.querySelector('#front-image') as HTMLImageElement)?.offsetWidth;
+      const percentage = (((e as any).layerX / imageWidth) * 100).toString();
+      (document.querySelector('.foreground-img') as HTMLDivElement).style.width = `${percentage}%`;
+      (document.querySelector('.background-img') as HTMLDivElement).style.opacity = `1`;
+    });
+    document.querySelector('#front-image')?.addEventListener('mouseleave', () => {
+      (document.querySelector('.foreground-img') as HTMLDivElement).style.width = `100%`;
+      (document.querySelector('.background-img') as HTMLDivElement).style.opacity = `0`;
+    });
   });
   return (
     <>
@@ -74,8 +88,11 @@ export default component$(() => {
               </a>
             </div>
           </div>
-          <div class="basis-1/2 flex flex-col my-6 lg:m-0">
-            <FrontImage class="mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md max-w-[449px]" />
+          <div class="basis-1/2 flex flex-col my-6 lg:m-0" id="front-image">
+            <div class="container self-end">
+              <BackImage class="img background-img  mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md max-w-[449px]" />
+              <FrontImage class="img foreground-img mx-auto w-full drop-shadow-2xl lg:mr-0 rounded-md max-w-[449px]" />
+            </div>
           </div>
         </div>
         <div class="py-3 w-full [&>*]:w-full">

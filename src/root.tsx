@@ -31,7 +31,9 @@ export default component$(() => {
     <QwikCityProvider>
       <head>
         <script
-          dangerouslySetInnerHTML={`
+          dangerouslySetInnerHTML={
+            process.env.NODE_ENV === 'production'
+              ? `
           (function() {
             function setTheme(theme) {
               document.documentElement.className = theme;
@@ -44,7 +46,9 @@ export default component$(() => {
               setTheme('light');
             }
           })();
-        `}
+        `
+              : ''
+          }
         ></script>
         <script
           dangerouslySetInnerHTML={`

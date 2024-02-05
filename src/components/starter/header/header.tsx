@@ -27,10 +27,10 @@ export default component$(() => {
           </a>
         </div>
         <nav class="items-center w-full flex mx-5 overflow-x-hidden overflow-y-auto text-default">
-          <ul class="flex flex-row mx-auto gap-8 font-medium self-center text-base w-auto tracking-[0.01rem] ">
+          <ul class="flex flex-row mx-auto list-none gap-8 font-medium self-center text-base w-auto tracking-[0.01rem] ">
             {sections.map((section) => (
               <>
-                <li class=" m-0 p-0 text-md uppercase font-bold">
+                <li class="text-base m-0 p-0 text-md uppercase font-bold">
                   <a class="inline-block p-0 no-underline" href={`/${section.id}`}>
                     <span class={'animated-button ' + (loc.url.pathname === `/${section.id}/` ? 'font-extrabold' : '')}>
                       <span>

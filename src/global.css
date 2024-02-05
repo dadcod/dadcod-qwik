@@ -28,6 +28,14 @@
   p {
     @apply text-lg py-3;
   }
+  ul,
+  ol {
+    list-style: disc;
+    @apply list-disc list-outside pl-6;
+  }
+  li {
+    @apply text-lg pt-1;
+  }
 }
 @layer components {
   .accent {

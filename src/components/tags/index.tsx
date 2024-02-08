@@ -13,7 +13,7 @@ export const Tags = component$<{ tags?: string[] }>(({ tags }) => {
     angular: { text: 'text-red-400', bg: 'bg-red-900' },
     design: { text: 'text-pink-100', bg: 'bg-pink-600' },
     ux: { text: 'text-purple-200', bg: 'bg-purple-700' },
-    default: { text: 'text-slate-400', bg: 'bg-slate-700' },
+    default: { text: 'text-slate-200', bg: 'bg-slate-700' },
   };
 
   const tagList = tags || frontmatter.tags;

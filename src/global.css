@@ -28,10 +28,13 @@
   p {
     @apply text-lg py-3;
   }
-  ul,
-  ol {
+  ul {
     list-style: disc;
     @apply list-disc list-outside pl-6;
+  }
+  ol {
+    list-style: decimal;
+    @apply list-decimal list-outside pl-6;
   }
   li {
     @apply text-lg pt-1;

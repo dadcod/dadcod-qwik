@@ -62,7 +62,7 @@ let _posts: Post[] | undefined;
 export const fetchPosts = async (): Promise<Post[]> => {
   _posts = _posts || (await load());
 
-  return _posts;
+  return _posts.sort((a, b) => (a.publishDate > b.publishDate ? -1 : 1));
 };
 
 /** */

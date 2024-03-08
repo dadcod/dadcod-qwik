@@ -20,9 +20,11 @@ og:
 
 import FrontImage from '~/media/rendering-techniques/dance.png?jsx';
 
-<p align="center">
-  <FrontImage />
-</p>
+<FrontImage />
+<sub>Feast your eyes on more dazzling designs like this from my colleague, the enchantress of illustrations, at</sub>
+<span>[Bogi](https://dribbble.com/Boginya_Hadzhiyska)</span>
+<br />
+<br />
 
 import { Tags } from '../../../../components/tags/';
 
@@ -45,6 +47,18 @@ import Slide2 from '~/media/rendering-techniques/slide2.png?jsx';
 
 By the end of this post series, I hope you'll be able to distinguish between the real techniques listed and the fake ones I've sprinkled in to keep things interesting. Let's go!
 
+But wait here is a video on the blog post:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/JwEZXLcx-tM?si=qE619cJr2AbeYEum"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
 Let's rewind to the early stages of the internet's integration into daily life. During this era, Netscape reigned as the dominant browser, primarily interpreting HTML, which meant that most websites were static.
 
 <p align="center">
@@ -52,6 +66,7 @@ Let's rewind to the early stages of the internet's integration into daily life. 
 </p>
 
 ## The dark ages
+
 Soon, the demand for more dynamic web experiences grew. This led to the development of PHP, a scripting language designed for server-side execution.
 With PHP, web pages were dynamically rendered on the server, allowing the content and appearance of websites to change in response to different data inputs.
 This era marked the beginning of multi-page websites, offering more dynamic content than their static predecessors.
@@ -70,6 +85,7 @@ import Slide7 from '~/media/rendering-techniques/slide7.png?jsx';
 </p>
 
 ## The Elightment
+
 As web pages grew more complex and demanded greater interactivity, JavaScript (JS) was introduced, ushering in what some might call a 'delightful nightmare' in web development. This pivotal moment marked the beginning of an era filled with both excitement and challenges. With the adoption of ECMAScript 3 (ES3), JavaScript quickly evolved, bringing not only interactive elements to web pages but also introducing asynchronous functionality. This made browsers significantly more capable and versatile.
 
 However, this rapid advancement coincided with the dot-com bubble burst in 1999. The economic downturn that followed resulted in a slowdown in technological progress. It took a whole decade for the next major standard, ECMAScript 5, to be established. In this period, the pace of web development innovation significantly decelerated, and the practices established by ES3 became the prevailing standard for a while, marking a phase of both maturity and a somewhat ironic pause in the otherwise fast-paced world of web development.
@@ -210,7 +226,7 @@ Instead of calling the server multiple times to gather the state and render what
 Before we start hot-potatoing the state between the client and server, let's take a step back and clearly define User Experience (UX) and Developer Experience (DX).
 We'll see how they relate to the state management and rendering techniques we've discussed so far.
 
-## UX 
+## UX
 
 Core Web Vitals are a set of specific factors that Google considers important in a webpage's overall user experience.
 

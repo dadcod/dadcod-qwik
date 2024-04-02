@@ -25,7 +25,6 @@ export default component$(() => {
           <div class="mx-auto basis-1/2 gap-10 flex flex-col">
             <h1>
               <span class="font-semibold">
-                Hello, I'm{' '}
                 <span class="bg-gradient-to-br from-emerald-500 to-cyan-400 bg-clip-text text-transparent">DadCod</span>
                 &nbsp;(Rosen Petkov)
               </span>

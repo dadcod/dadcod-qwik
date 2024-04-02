@@ -1,0 +1,645 @@
+---
+title: 'Rendering techniques: the dance between server and client - Part 2'
+excerpt: Welcome back to the second part of my exploration into the world of frontend rendering. Today, I'll dissect various rendering techniques, examining their workflows, pros and cons, tools, and use cases, topped off with a summary to guide you in choosing the right fit for your project.
+image: /images/dance2.png
+publishDate: 2024-03-08
+image:alt:
+tags:
+  - rendering
+  - state
+  - frameworks
+
+og:
+  - title: true
+    description: Welcome back to the second part of my exploration into the world of frontend rendering. Today, I'll dissect various rendering techniques, examining their workflows, pros and cons, tools, and use cases, topped off with a summary to guide you in choosing the right fit for your project.
+  - image: /images/dance.png
+    image:alt:
+---
+
+# Rendering techniques: the dance between server and client - Part 2
+
+import FrontImage from '~/media/rendering-deep-dive/dance2.png?jsx';
+
+<FrontImage />
+<sub>Feast your eyes on more dazzling designs like this from my colleague, the enchantress of illustrations, at</sub>
+<span>[Bogi](https://dribbble.com/Boginya_Hadzhiyska)</span>
+<br />
+<br />
+
+import { Tags } from '../../../../components/tags/';
+
+<Tags />
+
+<p align="center">{new Date('2024-03-08').toDateString()} </p>
+
+Welcome back to the second part of my exploration into the world of frontend rendering. Today, I'll dissect various rendering techniques, examining their workflows, pros and cons, tools, and use cases, topped off with a summary to guide you in choosing the right fit for your project.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fOtK1hy5ihc?si=CKJ6t7FLXKrs5Q1e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Let's go!
+
+<br />
+<br />
+
+# Static Site Generation (SSG)
+
+## Description
+
+Static Site Generation (SSG) stands as a cornerstone in modern web development. This approach involves generating full-fledged HTML pages at build time. It's like preparing a feast ahead of a big event; the food is ready to be served as soon as guests arrive. In the web world, this means your website is ready to go live instantaneously, offering a faster and more reliable user experience.
+
+import Slide1 from '~/media/rendering-deep-dive/slide1.png?jsx';
+
+<p align="center">
+  <Slide1 />
+</p>
+
+## Flow
+
+- Requests and Responses: When a user visits an SSG-powered site, they are served pre-built HTML pages. This significantly reduces server response times as everything is already prepared.
+- Critical Rendering Path: The critical rendering path is streamlined with SSG. Since HTML, CSS, and JavaScript are pre-built, the browser spends less time waiting for server responses and more time rendering the page, leading to a quicker page load.
+- Interaction: While SSG sites are static, dynamic functionality isn't out of reach. With the help of client-side JavaScript and APIs, interactive elements like forms and comments can be integrated seamlessly.
+- Core Web Vitals: SSG excels in Core Web Vitals, a set of metrics related to speed, responsiveness, and visual stability, thanks to its pre-rendering nature.
+
+## Pros and Cons
+
+Pros:
+
+- Lightning-fast loading times due to pre-rendered content.
+- Enhanced security as there are fewer server-side processes to exploit.
+- Superior SEO performance, given that search engines favor fast-loading, static content.
+
+Cons:
+
+- Not suitable for sites requiring real-time content updates.
+- Rebuilding the entire site for updates can be cumbersome for larger websites.
+
+## Tools
+
+When diving into the world of Static Site Generators (SSGs), the variety of tools available can be both exciting and overwhelming. Each tool offers unique features and caters to different needs, making the choice highly dependent on your project requirements and personal or team expertise. Let's explore some of the key players in the SSG landscape:
+
+## General-Purpose Static Site Generators
+
+1.  Jekyll: Ideal for its simplicity and direct integration with GitHub Pages. It's great for personal or documentation sites and is preferred for Ruby enthusiasts.
+2.  Hugo: Known for its speed, Hugo is perfect for larger sites where build time is critical. It appeals to those comfortable with Go.
+3.  Eleventy (11ty): A simpler, more agnostic tool, 11ty is gaining popularity for its flexibility and ease of use, supporting multiple templating languages.
+4.  Astro: A newer entry, Astro stands out for allowing the use of multiple frameworks like React, Vue, or Svelte in the same project, offering remarkable flexibility.
+
+## Framework-Specific Static Site Generators
+
+1.  Gatsby (React-based): Gatsby leverages React to offer a rich set of functionalities and plugins for dynamic, client-side experiences.
+2.  Next.js (React-based): Next.js, primarily for server-side rendering, also supports static site generation, offering React developers versatility in their projects.
+3.  Nuxt.js (Vue-based): Similar to Next.js but for Vue.js, Nuxt.js is versatile in supporting both SSG and server-side rendering for Vue developers.
+4.  SvelteKit (Svelte-based): As an SSG for the Svelte ecosystem, SvelteKit is known for its developer-friendly approach and performance efficiency.
+
+import Slide2 from '~/media/rendering-deep-dive/slide2.png?jsx';
+
+<p align="center">
+  <Slide2 />
+</p>
+
+## Use Cases
+
+SSG is a perfect match for blogs, documentation sites, and portfolio websites where content changes are infrequent but the need for speed and reliability is paramount.
+
+## Summary
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/MHruQtvACbQ?si=o-pKqoFv1MliH37j"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+In summary, Static Site Generation is your go-to when you need a fast, secure, and SEO-friendly website without the need
+for dynamic, real-time content. It's an excellent choice for content-driven sites that value performance and security
+above all.
+
+<br />
+<br />
+
+# Server-Side Scripting (SSS) / Multi-Page Application (MPA) / Server-Side Rendering (SSR)
+
+## Description
+
+Server-Side Rendering (SSR), often used in Multi-Page Applications (MPA), is a traditional but powerful approach in web development. Here, web pages are rendered on the server for each request. It's like a chef preparing a meal fresh for each order -- it takes time, but the result is customized to the diner's request. In SSR, each page refresh or navigation results in a new page request to the server, which then sends back the fully rendered HTML to the client.
+
+import Slide3 from '~/media/rendering-deep-dive/slide3.png?jsx';
+
+<p align="center">
+  <Slide3 />
+</p>
+
+## Flow
+
+- Requests and Responses: Every user interaction that requires a new page (like clicking a link) sends a request to the server. The server processes the request, renders the page, and sends it back.
+- Critical Rendering Path: The path involves more server-side processing for each page, potentially leading to longer wait times for the browser to begin rendering. However, users receive fully ready-to-display content once it arrives.
+- Interaction: User interactions require a round trip to the server, making them inherently slower than client-side dynamics but more SEO-friendly and reliable.
+- Core Web Vitals: SSR can offer good results in Core Web Vitals if optimized correctly, especially in Largest Contentful Paint (LCP), but might struggle in First Input Delay (FID) due to server processing time.
+
+## Pros and Cons
+
+Pros:
+
+- Improved SEO, as search engines easily index server-rendered content.
+- Faster initial page load, beneficial for delivering the primary content.
+- Reliable rendering across all devices and browsers, as it doesn't rely heavily on client-side JavaScript.
+
+Cons:
+
+- Higher server load, especially with heavy traffic.
+- Longer wait times for interactive content.
+- Full page reloads can lead to a less fluid user experience compared to SPA (Single-Page Applications).
+
+## Tools
+
+When it comes to Server-Side Scripting, choosing the right combination of programming languages and their associated frameworks is crucial for building efficient, scalable, and maintainable web applications. Here's a look at some of the most popular languages and frameworks used in server-side development:
+
+## Languages and Frameworks for Server-Side Scripting
+
+1.  PHP: A staple in web development, PHP is user-friendly and often paired with frameworks like Laravel and Symfony for enhanced functionality.
+
+2.  Python: Known for its readability, Python is used with Django for a high-level, rapid development approach, and Flask for more minimalistic applications.
+
+3.  JavaScript (Node.js): This brings JavaScript to server-side development, with Express.js being a minimalist framework for building a wide range of applications.
+
+4.  Ruby: Ruby, primarily through the Ruby on Rails framework, offers a convention-over-configuration approach that's ideal for rapid development cycles.
+
+5.  Java: A strong player in enterprise environments, Java is often used with the Spring framework for comprehensive, robust application development.
+
+6.  C#: In the .NET ecosystem, C# is used with ASP.NET Core, which is suitable for building modern, cloud-enabled applications.
+
+import Slide4 from '~/media/rendering-deep-dive/slide4.png?jsx';
+
+<p align="center">
+  <Slide4 />
+</p>
+
+## Use Cases
+
+SSR/MPA is ideal for content-heavy sites like news portals, e-commerce platforms, and corporate websites, where SEO and initial load performance are critical.
+
+## Summary
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/B8UtflctMOA?si=LBdMqrM1QcdI3EWr"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Server-Side Rendering, particularly in the form of Multi-Page Applications, remains a vital player in the web development arena. It's a robust solution for websites prioritizing search engine visibility and reliability, albeit with some trade-offs in interactivity and server load.
+
+<br />
+<br />
+
+# Single-Page Application (SPA)
+
+## Description
+
+Single-Page Applications (SPAs) have reshaped the landscape of web interactions. At its core, a SPA is a web application or website that interacts with the user dynamically rewriting the current page rather than loading entire new pages from the server. This approach provides a more fluid, app-like experience in the browser, where most resources (HTML, CSS, JavaScript) are loaded only once throughout the lifespan of the application.
+
+import Slide5 from '~/media/rendering-deep-dive/slide5.png?jsx';
+
+<p align="center">
+  <Slide5 />
+</p>
+
+## Flow
+
+- Requests and Responses: In SPAs, after the initial page load, only data requests and responses typically occur between the client and server. This minimizes data transfer, speeding up interactions and reducing load times.
+- Critical Rendering Path: The critical rendering path in an SPA is primarily concerned with the initial load. Here, JavaScript plays a central role, dynamically updating the DOM (Document Object Model) based on user interactions.
+- Interaction: User interactions in SPAs are handled fluidly without full page refreshes, leading to a seamless user experience.
+- Core Web Vitals: SPAs can excel in Core Web Vitals, especially in terms of interactivity and visual stability, but they require careful optimization, particularly for the initial load performance.
+
+## Pros and Cons
+
+Pros:
+
+- Smooth user experience with no page reloads.
+- Efficient data transmission after initial load.
+- Great for complex applications with rich user interfaces.
+
+Cons:
+
+- Initial load might take more time as the entire application needs to be loaded.
+- Can be less SEO-friendly, although advancements in indexing technologies and SSR (Server-Side Rendering) techniques are mitigating this issue.
+- Requires JavaScript to be enabled in the browser.
+
+## Tools
+
+Frameworks like React, Angular, and Vue.js are the pillars of SPA development, each bringing its own flavor of syntax, features, and community support.
+
+import Slide6 from '~/media/rendering-deep-dive/slide6.png?jsx';
+
+<p align="center">
+  <Slide6 />
+</p>
+
+## Use Cases
+
+SPAs shine in scenarios where user experience and interactivity are paramount: think of web applications like social networks, email clients, or cloud-based tools where frequent page reloads would be disruptive.
+
+## Summary
+
+<iframe
+  width="175"
+  height="315"
+  src="https://www.youtube.com/embed/8dQbguq1XSA?si=vq4eaUAiGmzOzhf9"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Single-Page Applications represent a paradigm shift in the web user experience, offering a smooth, dynamic interface akin to native desktop or mobile apps. While they excel in interactivity and are ideal for complex applications, they require careful consideration of initial load performance and SEO implications.
+
+<br />
+<br />
+
+# Hydration in Web Development
+
+## Description
+
+Hydration is a term often mentioned in the context of modern web development, especially when discussing frameworks like React, Vue, or Svelte. It refers to the process where a static page, initially rendered on the server, becomes interactive on the client-side. Essentially, this technique combines the best of both worlds: server-side rendering for faster initial load times and client-side JavaScript for rich interactivity.
+
+import Slide7 from '~/media/rendering-deep-dive/slide7.png?jsx';
+
+<p align="center">
+  <Slide7 />
+</p>
+
+## Flow
+
+- Initial Rendering: The server sends a static HTML page to the client, which can be quickly displayed by the browser.
+- Hydration Process: JavaScript, loaded alongside the HTML, 'hydrates' the page by attaching event listeners and enabling interactive elements, essentially turning it into a SPA (Single-Page Application).
+- User Interaction: Once the page is hydrated, it behaves like a client-side rendered app, with dynamic content changes and interactivity.
+
+## Pros and Cons
+
+Pros:
+
+- Fast initial load time due to server-rendered static content.
+- Enhanced interactivity and rich user experience post-hydration.
+- Better SEO performance as search engines can index server-rendered content more easily.
+
+Cons:
+
+- Complexity in implementation, as it requires careful coordination between server and client-side scripts.
+- Potentially longer time to interactivity, as the JavaScript needed for hydration can be large.
+
+## Tools
+
+Frameworks that support hydration include Next.js (React-based), Nuxt.js (Vue-based), and SvelteKit (using Svelte). These tools provide abstractions to simplify the hydration process.
+
+import Slide8 from '~/media/rendering-deep-dive/slide8.png?jsx';
+
+<p align="center">
+  <Slide8 />
+</p>
+
+## Use Cases
+
+Hydration is particularly useful for sites where SEO and fast initial load times are crucial, but also require rich interactivity and dynamic content -- such as e-commerce sites, news websites, and blogs.
+
+## Summary
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/ChKNcoDvdRs?si=xoPY_oqQfJoG3isQ"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Hydration strikes a delicate balance between performance and functionality. It allows for a fast-loading, SEO-friendly initial view with the rich interactivity of a SPA. The key lies in managing the complexity of the process and optimizing the size and execution of client-side scripts for the best user experience.
+
+<br />
+<br />
+
+# JAMstack: The Modern Web Development Architecture
+
+## Description
+
+JAMstack stands for JavaScript, APIs, and Markup. It's a modern web development architecture that focuses on decoupling the frontend from the backend. In JAMstack, websites are served as static HTML pages, with JavaScript handling dynamic functionalities and APIs being used for backend operations. This architecture encourages a more secure, scalable, and performant way of building websites and applications.
+
+import Slide9 from '~/media/rendering-deep-dive/slide9.png?jsx';
+
+<p align="center">
+  <Slide9 />
+</p>
+
+## Flow
+
+- Markup Generation: The site's structure is pre-built into static HTML at build time, often using static site generators.
+- JavaScript Driven: Client-side JavaScript is used to enrich these static pages with dynamic functionalities.
+- API Integration: Server-side operations are abstracted into reusable APIs, accessed over HTTPS with JavaScript. These can be custom-built or third-party services.
+
+## Pros and Cons
+
+Pros:
+
+- Fast performance due to pre-built markup and reduced server-side processing.
+- High scalability, as serving static files can be efficiently distributed across content delivery networks (CDNs).
+- Enhanced security, with fewer server-side layers exposed to potential attacks.
+
+Cons:
+
+- Limited dynamic capabilities on the server-side; not ideal for sites requiring intensive server-side processing.
+- Reliance on external services (APIs) can introduce complexities in terms of managing and integrating these services.
+
+## Tools
+
+Popular JAMstack tools include static site generators like Hugo, Gatsby, and 11ty, along with headless CMSs like Contentful and Netlify CMS for content management.
+
+import Slide10 from '~/media/rendering-deep-dive/slide10.png?jsx';
+
+<p align="center">
+  <Slide10 />
+</p>
+
+## Use Cases
+
+JAMstack is excellent for websites that prioritize speed and security, such as corporate websites, blogs, and e-commerce storefronts. It's also a good choice for projects looking to leverage a microservices architecture.
+
+## Summary
+
+JAMstack represents a shift towards more modular and efficient web development practices, focusing on performance, scalability, and security. While it excels in delivering static content, the reliance on APIs and client-side JavaScript allows for considerable flexibility and dynamism where needed.
+
+<br />
+<br />
+
+# Incremental Static Generation (ISG)
+
+## Description
+
+Incremental Static Generation (ISG) is an advanced technique in the realm of static site generation. While traditional static site generation builds the entire site at once during deployment, ISG allows for pages to be generated statically on-demand, or "incrementally". This means new pages can be added or updated without the need to rebuild the whole site, bridging the gap between static site benefits and dynamic content flexibility.
+
+import Slide11 from '~/media/rendering-deep-dive/slide11.png?jsx';
+
+<p align="center">
+  <Slide11 />
+</p>
+
+## Flow
+
+- Initial Deployment: During the initial build, only a portion of the pages are generated statically.
+- On-Demand Page Generation: When a user requests a page that hasn't been generated yet, ISG kicks in. The page is built on the fly and then served to the user. This newly generated page is then stored and served statically for future requests.
+- Updates: ISG allows for specific pages to be regenerated at scheduled intervals or triggered by events, ensuring content remains up-to-date without full rebuilds.
+
+## Pros and Cons
+
+Pros:
+
+- Scales well for large sites with numerous pages, as not every page needs to be built at build time.
+- Ensures fresh content without needing to rebuild the entire site.
+- Combines the speed of a static site with the flexibility of dynamic content generation.
+
+Cons:
+
+- First visitors to a new page may experience slower load times, as the page is generated on demand.
+- Can add complexity to the site's deployment and hosting architecture.
+
+## Tools
+
+Frameworks supporting ISG include Next.js and Nuxt.js, which have built-in capabilities for incremental builds and offer easy-to-use configurations for ISG.
+
+## Use Cases
+
+ISG is ideal for large-scale websites like e-commerce platforms, news sites, and blogs with a large number of pages, where rebuilding the entire site for every change is impractical.
+
+## Summary
+
+Incremental Static Generation represents a powerful solution for managing large-scale websites where content freshness and site performance are both priorities. It combines the benefits of static site generation with the dynamism of on-demand rendering, making it an excellent choice for websites with extensive and frequently updated content.
+
+<br />
+<br />
+
+# Hydration is a Workaround!
+
+import Slide12 from '~/media/rendering-deep-dive/slide12.png?jsx';
+
+<p align="center">
+  <Slide12 />
+</p>
+
+## The Compromise of Hydration
+
+In web development, hydration serves as a balancing act, where server-rendered static pages are later 'hydrated' with client-side JavaScript for full interactivity. This strategy, while innovative, introduces significant challenges, particularly when evaluated against Core Web Vitals like First Contentful Paint (FCP) and Time to Interactive (TTI).
+
+## Core Web Vitals and Hydration
+
+- Fast FCP but Delayed TTI: Hydration can lead to impressive FCP scores, as the browser quickly renders the static content served from the server. However, the TTI can suffer significantly. Although the content appears on screen, it isn't interactive until the JavaScript loads and runs, leading to a gap between visual readiness and functional readiness.
+
+import Slide13 from '~/media/rendering-deep-dive/slide13.png?jsx';
+
+<p align="center">
+  <Slide13 />
+</p>
+
+- The User Experience Gap: This discrepancy creates a user experience akin to the uncanny valley -- the site looks ready but doesn't respond to interactions. Users attempting to engage with seemingly ready buttons or links meet with no immediate response, leading to frustration and diminished user trust.
+
+import Slide14 from '~/media/rendering-deep-dive/slide14.png?jsx';
+
+<p align="center">
+  <Slide14 />
+</p>
+
+## Performance Issues: Beyond Initial Load Times
+
+- Resource-Intensive Hydration: Delivering HTML followed by the hefty JavaScript needed for hydration results in increased bandwidth usage and processing time. This two-step process, while necessary for hydration, can become a bottleneck, especially on less powerful devices.
+- Impact on Interactivity: The processing power required to 'wake up' the static HTML and make it fully interactive can lead to significant delays on the TTI metric. This period, where the page is visually complete but not yet interactive, is critical in user perception and overall site performance.
+
+## Rethinking the Approach
+
+These insights into hydration's impact on Core Web Vitals push for innovative approaches in web development. The challenge lies in developing methodologies that seamlessly bridge the gap between rapid content delivery and interactive readiness, optimizing both FCP and TTI for the best user experience.
+
+## Summary
+
+Hydration, as it stands, is a workaround addressing the dual needs of fast content delivery and interactive functionality. However, this approach comes with its own set of UX and performance challenges, especially evident in Core Web Vitals metrics like FCP and TTI. As the web development industry evolves, the pursuit for more efficient, user-centric solutions continues, striving for that perfect blend of efficiency, interactivity, and user satisfaction. Let's look at possible solutions in the next section.
+
+# Islands Architecture: A Strategic Approach to Web Interactivity
+
+## The Islands Concept
+
+The Islands Architecture is an emerging approach in web development that strategically combines static rendering with dynamic client-side interactions. Picture a webpage as an archipelago: each 'island' is a component or section that requires interactivity, surrounded by the 'sea' of static content. This methodology allows for selective enhancement, where only certain parts of the page are dynamic and client-side heavy, while the rest remains static.
+
+import Slide15 from '~/media/rendering-deep-dive/slide15.png?jsx';
+
+<p align="center">
+  <Slide15 />
+</p>
+
+## Balancing Static and Dynamic Content
+
+- Selective Enhancement: Unlike traditional SPAs where the entire page is JavaScript-driven, Islands Architecture applies interactivity only where necessary. This selective approach leads to better performance and more efficient resource usage.
+- Improved Initial Load Times: By limiting the amount of client-side JavaScript and focusing on static content for most of the page, the initial load time is significantly reduced compared to full SPAs.
+
+## Core Web Vitals and User Experience
+
+- Enhancing FCP and TTI: Islands Architecture can improve both First Contentful Paint (FCP) and Time to Interactive (TTI) metrics. The reduced JavaScript footprint means the page becomes interactive faster, providing a better user experience.
+- Reduced JavaScript Payload: By breaking the page into 'islands' of interactivity, the total amount of JavaScript needed is reduced, lowering the time for full page interactivity and decreasing the potential for the uncanny valley effect where the page appears ready but isn't interactive.
+
+## Implementation and Use Cases
+
+- Frameworks and Tools: Frameworks like Astro, which pioneered the concept, allow developers to build using this architecture efficiently. Other frameworks are also incorporating similar ideas, acknowledging the benefits of this approach.
+- Ideal for Mixed Content Sites: Islands Architecture is perfect for websites that have a mix of static content and dynamic components, like blogs with interactive widgets, e-commerce sites with dynamic product recommendations, or landing pages with interactive forms.
+
+import Slide16 from '~/media/rendering-deep-dive/slide16.png?jsx';
+
+<p align="center">
+  <Slide16 />
+</p>
+
+## Summary
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/B0_tSNmNvUM?si=n2eFPoAm_g-pNVLf"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Islands Architecture offers an innovative solution to the challenges of building interactive web applications. By combining static content with strategically placed dynamic 'islands,' it enhances performance, improves Core Web Vitals, and provides a more seamless user experience. This approach represents a shift in web development, prioritizing efficiency and user engagement in equal measure.
+
+<br />
+<br />
+
+# React Server Components: Revolutionizing Component Rendering
+
+## Introduction to React Server Components
+
+React Server Components represent a significant evolution in the React framework's approach to rendering components. This innovation allows for a unique combination of server-side and client-side rendering, where certain components are rendered on the server, reducing the need to send large JavaScript bundles to the client. This shift promises to enhance performance, particularly for data-intensive applications.
+
+import Slide17 from '~/media/rendering-deep-dive/slide17.png?jsx';
+
+<p align="center">
+  <Slide17 />
+</p>
+
+## The Mechanics of Server and Client Rendering
+
+- Server-Rendered Components: These components are rendered on the server and sent to the client as static HTML. Being server-side, they can directly access server-side resources like databases, without exposing sensitive operations or data to the client.
+- Client-Side Enhancement: Interactive components are still rendered on the client, allowing the application to retain dynamic capabilities where needed.
+- Reduced JavaScript Payload: By offloading parts of the rendering to the server, the amount of JavaScript sent to the client is reduced, leading to faster load times and improved interactivity metrics.
+
+## Impact on Performance and User Experience
+
+- Enhancing Core Web Vitals: React Server Components can positively impact Core Web Vitals, such as First Contentful Paint (FCP) and Time to Interactive (TTI), by reducing the initial JavaScript payload required for page interaction.
+- Reducing the Bottlenecks: This approach minimizes the risks associated with large JavaScript bundles, such as delayed interactivity and the uncanny valley effect, where the page looks ready but isn't interactive.
+
+## Implementation Considerations
+
+- Framework Support: Currently, React Server Components are available as an experimental feature in React, with ongoing development and integration into the broader React ecosystem.
+- Ideal Use Cases: This method is particularly beneficial for applications with heavy data requirements or complex server interactions, such as dashboards, e-commerce sites, and content management systems.
+
+## Summary
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/guAda2tTGiU?si=dGNmGsJTnTInTug5"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+React Server Components mark a significant shift in how applications are built with React. By efficiently balancing server-side and client-side rendering, they offer a path towards more performant web applications, reducing client-side load and enhancing user experience. As this feature continues to evolve, it holds the promise of reshaping best practices in React development.
+
+import Slide18 from '~/media/rendering-deep-dive/slide18.png?jsx';
+
+<p align="center">
+  <Slide18 />
+</p>
+
+# There Has to Be a Better Way
+
+In our journey through the maze of web development techniques, we've encountered various solutions, each with its unique strengths and shortcomings. The quest for the perfect balance of speed, dynamism, and interactivity remains challenging. Let's recap what we've discovered:
+
+## The Trade-Offs So Far
+
+- Static Sites: They are blazing fast, owing to pre-rendered content. However, they lack the dynamism and interactivity needed for more complex applications.
+- Server-Side Rendering (SSR): SSR brings dynamism by rendering pages on the server, but it often falls short on client-side interactivity.
+- Single-Page Applications (SPA): SPAs excel in interactivity, offering a rich, app-like experience. But they typically suffer from slow initial load times.
+- SPA + SSR: This combination appears fast initially, but can result in slower overall performance due to the complexities of managing both server and client-side rendering.
+- SPA + SSR + SSG: It presents an illusion of speed with quick visual rendering, but the Time to Interactive (TTI) often worsens, as the page isn't truly interactive until hydration completes.
+- Islands Architecture: It provides speed by isolating dynamic components in a sea of static content. However, developer experience (DX) can suffer due to no shared state, resembling a Multi-Page Application (MPA) approach, among other complexities.
+- React Server Components (RSC): They offer fast performance by offloading certain tasks to the server. However, they complicate the development experience, as managing client and server components separately can be challenging, and nesting components presents its own set of difficulties.
+
+import Slide19 from '~/media/rendering-deep-dive/slide19.png?jsx';
+
+<p align="center">
+  <Slide19 />
+</p>
+
+## Reflecting on the Ideal Solution
+
+- Interactivity vs. Performance: SPAs bring interactivity; SSR offers speed. Yet, combining them often leads to a compromise on one or both fronts.
+- The Hydration Dilemma: While hydration attempts to bridge this gap, it comes with its own baggage, particularly impacting TTI and overall user experience.
+- User Experience and Developer Experience: An optimal solution must balance not only the technical aspects of performance and interactivity but also consider the overall user experience (UX) and the ease of development (DX).
+
+## The Future Outlook
+
+As we reflect on these techniques, it becomes evident that the search for the 'holy grail' of web development continues.
+
+<br />
+<br />
+
+# Embracing Resumability in Web Development
+
+## Unpacking Resumability
+
+In the quest for optimal web performance and user experience, Resumability emerges as a cutting-edge concept. Particularly highlighted by the Qwik framework, Resumability refers to the ability of a web application to resume its state and interactivity on the client-side, picking up where the server left off without re-running the server-side code. This approach aims to deliver the best of both worlds: server-side rendering's initial load performance and single-page applications' rich interactivity.
+
+import Slide22 from '~/media/rendering-deep-dive/slide22.png?jsx';
+
+<p align="center">
+  <Slide22 />
+</p>
+
+## How Resumability Works
+
+- Server to Client Handoff: In a Resumable web app, the server renders the initial HTML and sends it to the client. Crucially, the server also sends a minimal footprint of the state and logic needed to resume the application.
+- On-Demand Interactivity: Unlike traditional hydration, which loads and executes all the client-side JavaScript upfront, Resumability dynamically loads only the necessary code and state based on user interactions. This granular approach significantly reduces the initial JavaScript payload and Time to Interactive (TTI).
+
+## Resumability's Impact on Performance
+
+- Optimizing Core Web Vitals: By minimizing the initial JavaScript bundle size and deferring the loading of interactive features, Resumability positively impacts metrics like First Contentful Paint (FCP) and TTI.
+- Enhancing User Experience: This method reduces the 'uncanny valley' effect of pages appearing fully loaded but not being interactive, ensuring a smoother transition for the user from viewing to interacting.
+
+## The Role of Frameworks Like Qwik
+
+- Enabling Fine-Grained Loading: Frameworks such as Qwik are designed to optimize for Resumability. They intelligently split the application into small, independently loadable and executable parts, enabling a highly efficient, on-demand interactivity model.
+- Developer Experience (DX): While managing the resumption of state and logic can be complex, these frameworks provide abstractions and tools to simplify the process, making it more accessible for developers.
+
+## Summary
+
+Resumability represents a forward-thinking approach in web development, seeking to overcome the limitations of traditional hydration models. By enabling applications to resume rather than reload, it promises faster initial loads and more efficient, dynamic interactivity. As frameworks like Qwik evolve, they offer a glimpse into a future where web applications can be both fast to load and rich in user experience without the compromises currently faced.
+
+# Conclusion: Seeking Clarity in the Complex World of Frontend Rendering
+
+As we reach the end of this exploration into the diverse landscape of frontend rendering techniques, I hope this deep dive has brought clarity and insight into the multifaceted nature of web development today.
+
+From the simplicity and speed of Static Sites to the dynamic capabilities of Server-Side Rendering (SSR), the interactivity of Single-Page Applications (SPA), and the innovative approaches of Islands Architecture and React Server Components (RSC), each method offers unique advantages and challenges. We've seen how SPA combined with SSR and Hydration seeks to balance speed with interactivity, yet often at the cost of complexity and Time to Interactive (TTI) performance. Meanwhile, emerging concepts like Resumability in frameworks like Qwik aim to address these shortcomings, pushing the boundaries of what's possible in web performance and user experience.
+
+The landscape of frontend development is continually evolving, and with it, the tools and techniques at our disposal. As developers and creators, our journey is never static. We adapt, learn, and grow with the ever-changing technological tide, striving to find the perfect balance between performance, interactivity, usability, and development experience.
+
+I hope this article has shed light on the various rendering techniques, their strengths and limitations, and has helped you in making informed decisions for your web development projects. The path to mastering frontend development is ongoing, and with each step, we contribute to a more dynamic, efficient, and user-friendly web.
+
+import Slide24 from '~/media/rendering-deep-dive/slide24.png?jsx';
+
+<p align="center">
+  <Slide24 />
+</p>
+
+P.S.: Hopefully, this guide has equipped you with the knowledge to discern the real from the seemingly real techniques in the picture above :)

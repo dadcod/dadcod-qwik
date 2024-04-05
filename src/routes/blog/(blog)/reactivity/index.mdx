@@ -1,0 +1,349 @@
+---
+title: 'Reactivity as the catalyst: Driving Evolution in Frameworks like React, Vue, and Angular'
+excerpt: In this article, we'll explore the concept of reactivity and how it drives evolution in frameworks like React, Vue, and Angular. We'll also discuss the different reactivity models and how they are implemented in these frameworks.
+image: /images/reactivity_evolution.png
+image:alt: monkey evolution to man into frameworks
+publishDate: 2024-04-04
+
+tags:
+  - reactivity
+  - state
+  - frameworks
+
+og:
+  - title: true
+    description: In this article, we'll explore the concept of reactivity and how it drives evolution in frameworks like React, Vue, and Angular. We'll also discuss the different reactivity models and how they are implemented in these frameworks.
+  - image: /images/reactivity_evolution.png
+    image:alt: monkey evolution to man into frameworks
+---
+
+# Reactivity as the catalyst: Driving Evolution in Frameworks like React, Vue, and Angular
+
+import { Tags } from '../../../../components/tags/';
+
+<Tags />
+
+<p align="center">{new Date('2022-11-9').toDateString()} </p>
+
+import FrontImage from '~/media/reactivity/reactivity_evolution.png?jsx';
+
+{' '}
+
+<FrontImage />
+
+In this article I will go over what reactivity is. Why is reactivity important? Are React and Angular even reactive? What is fine grained and coarse grained reactivity? What are the techniques to use with code examples? Is there a consensus in the community on the right way?
+One last thing before we begin - the purpose of the article is not to try to redefine everything from the ground up but rather sum everything said on the topic in the last couple of years. So let's get started.
+
+## The problem
+
+Before we dive into the nitty-gritty of the technical definition, let's first figure out what problem reactivity is solving and why it's a big deal. In my <a href="/blog/rendering-techniques/"> article </a> about rendering techniques, I walked through the history of web development in terms of rendering.
+
+It showed a pattern of when and why new solutions pop up. I think the same goes for reactivity. User experience has always been king (or at least that's what we've been told, so let's roll with that for now).
+
+import CycleImage from '~/media/rendering-techniques/cycle.png?jsx';
+
+<CycleImage />
+
+## The definition
+
+Now that we know what problems are solved lets try to find a clear definition.
+
+The definition:
+Now that we know what problems are solved, let's dive into defining reactivity more clearly.
+For the definition, I've tapped into several resources. The Vue <a target="_blank" href="https://vuejs.org/guide/extras/reactivity-in-depth.html">documentation</a> offers insightful explanations. Ryan Carniato, the champion of signals, provides both <a href="https://dev.to/this-is-learning/the-evolution-of-signals-in-javascript-8ob">historical context</a> and his own <a  href="https://dev.to/this-is-learning/how-react-isn-t-reactive-and-why-you-shouldn-t-care-152m">definition</a>. Miśko, known for creating Angular and Qwik, has also contributed with a comprehensive <a href="https://www.builder.io/blog/reactivity-across-frameworks">article </a> comparing various frameworks. Additionally, Marc Grabanski from Frontend Masters has penned an informative <a href="https://frontendmasters.com/blog/vanilla-javascript-reactivity/">piece</a> on reactivity. All these sources have been instrumental in shaping my understanding.
+In its simplest form, Marc Grabanski of Frontend Masters describes reactivity as:
+
+'Reactivity" is how systems react to changes in data. … when data changes, you do things.
+
+Expanding on this, the Vue documentation defines reactivity as:
+
+A programming paradigm that allows us to adjust to changes in a declarative manner.
+
+The declarative part is quite important and explained well in the Reactive programming as a general programming paradigm:
+
+"For example, in an imperative programming setting, a := b + c would mean that a is being assigned the result of b + c in the instant the expression is evaluated, and later, the values of b and c can be changed with no effect on the value of a. On the other hand, in reactive programming, the value of a is automatically updated whenever the values of b or c change, without the program having to explicitly re-state the statement a := b + c to re-assign the value of a."
+
+```js
+var b = 1
+var c = 2
+var a = b + c
+b = 10
+console.log(a) // 3 (not 12 because "=" is not a reactive assignment operator)
+
+// now imagine you have a special operator "$=" that changes the value of a variable (executes code on the right side of the operator and assigns result to left side variable) not only when explicitly initialized, but also when referenced variables (on the right side of the operator) are changed
+var b = 1
+var c = 2
+var a $= b + c
+b = 10
+console.log(a) // 12
+```
+
+Here is a YT short of my definition:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/b2hssYQvwrk?si=iNY93MRhqQY59itA"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+## The solution
+
+Now that we know what reactivity is and why it's important, let's see how we can implement it ourselves. In the article I mentioned from Marc, he goes through all the different ways to implement reactivity in your app.
+Psst, I also have a YT short on how to do reactivity in VanillaJS:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/wog6qZOGO3M?si=phmT5TvGuvgFR6Al"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+- Object.defineProperty
+
+```js
+let data = { title: 'Hello World' };
+let view = document.getElementById('view');
+Object.defineProperty(data, 'title', {
+  set(value) {
+    this._title = value;
+    // Update the view when the title changes
+    view.innerHTML = value;
+  },
+  get() {
+    return this._title;
+  },
+});
+// Automatically updates the view
+data.title = 'Hello Dada';
+```
+
+- Proxy
+
+```js
+{
+const target = {
+    name: "daddy",
+    value: 42,
+}:
+const handler = {
+    get(target, prop) {
+        console.log("get", prop);
+        return "your " + target [prop];
+    }
+};
+const yourProxy = new Proxy(target, handler);
+console.log(yourProxy.name); // Outputs "your daddy"
+}
+```
+
+- Event Emitter
+
+```js
+class EventEmitter {
+  on(event, listener) {
+    this.listeners[event].push(listener);
+  }
+  emit(event, arg) {
+    this.listeners[event].forEach((listener = listener(arg)));
+  }
+}
+
+let emitter = new EventEmitter();
+let data = { title: 'Hello Papa' };
+
+emitter.on('titleChange', (newTitle) => {
+  view.innerHTML = newTitle;
+});
+
+// When data changes
+data.title = 'Hello Papi';
+emitter.emit('titleChange', data.title);
+```
+
+- Two way data binding
+
+```js
+function bindInputToProperty(input, obj, prop) {
+  input.value = obj[prop];
+  input.addEventListener('input', (e) => {
+    // Update the property when the input changes
+    obj[prop] = e.target.value;
+  });
+  Object.defineProperty(obj, prop, {
+    set(value) {
+      this._title = value;
+      // Update the view when the title changes
+      input.value = obj[prop];
+      updateElementById('view');
+    },
+    get() {
+      //...
+    },
+  });
+}
+let data = { title: 'Hello' };
+let input = document.getElementById('titleInput');
+
+bindInputToProperty(input, data, 'title');
+// This will update the input value
+data.title = 'daddy';
+```
+
+## Frameworks
+
+Let's examine the original approaches to reactivity adopted by each framework at their inception.
+If you are familiar with the history of web frameworks in terms of reactivity, you can skip this part.
+
+import TimelineImage from '~/media/reactivity/history_of_fe_frameworks.png?jsx';
+
+<TimelineImage />;
+
+## KnockoutJS
+
+KnockoutJS solved reactivity in web applications by utilizing observables and computed observables, coupled with an automatic dependency tracking mechanism. It transformed regular JavaScript variables into observables, creating a dynamic link between the UI and the data model. This linkage ensured that changes in the data automatically triggered updates in the UI, and vice versa, enabling an effective two-way data binding. The framework was designed to update only the UI components that depended on the changed data, reducing unnecessary DOM operations. This approach, marked by its transparent dependency tracking and user-friendly implementation, allowed developers to efficiently construct complex, data-driven interfaces.
+
+```js
+var myViewModel = {
+  personName: ko.observable('Bob'),
+  personAge: ko.observable(123),
+};
+```
+
+import MVVMImage from '~/media/reactivity/mvvm.jpg?jsx';
+
+<MVVMImage />
+
+However, Angular and React both offered more comprehensive solutions for building modern web applications compared to KnockoutJS. Angular's all-in-one framework approach with TypeScript, and React's component-based architecture with the Virtual DOM, addressed the growing complexity of web applications more effectively. Their strong corporate backing, large communities, and robust ecosystems also played a significant role in their success. KnockoutJS, while pioneering in its data-binding capabilities, couldn't keep pace with the evolving needs and complexities of modern web development, which Angular and React were better equipped to handle.
+
+## AngularJS
+
+The AngularJS digestion cycle, central to its two-way data binding, is a process where AngularJS continuously monitors variables on the scope for changes and updates the view accordingly. It's initiated either automatically by AngularJS's internal mechanisms or manually through $scope.$apply(). The cycle involves iterating over all the "watchers" on the scope, comparing their current and previous values (a process known as dirty checking). If any changes are detected, the corresponding parts of the view are updated. This cycle, known as the $digest cycle, can go through multiple iterations until no further changes are detected, ensuring that both the model and view are synchronized.
+
+import AngularjsImage from '~/media/reactivity/angular.png?jsx';
+
+<AngularjsImage />
+
+However, the efficiency of this process can be impacted in applications with a large number of watchers, potentially leading to performance issues. Each binding in the HTML template creates at least one watcher. For example, if you have a list with 1000 items, and each item has 3 bindings, you end up with 3000 watchers. This large number of watchers can significantly slow down the digestion cycle, as AngularJS checks each watcher individually during the cycle. The complexity of the expressions being watched can also impact performance. If you have a watcher that evaluates a complex expression or a function that performs heavy operations, the digestion cycle will take longer to process. For instance, a watcher that filters and sorts a large list on each cycle can be particularly costly in terms of performance.
+
+## ReactJS
+
+From the beginning, React introduced the Virtual DOM, an in-memory representation of the real DOM. React creates a virtual DOM tree when rendering components. Upon subsequent updates, React generates a new virtual DOM tree and compares it with the previous one (a process known as "diffing").
+
+import ReactjsImage from '~/media/reactivity/vdom.png?jsx';
+
+<ReactjsImage />
+
+The initial approach of React, while innovative and powerful for its time, did encounter performance bottlenecks and limitations in certain scenarios. In early React, frequent updates to the component's state using setState() could lead to performance issues. This was because each call to setState() potentially triggered a re-render of the component and its child components, leading to a significant amount of DOM operations.
+
+YT short about vdom:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/hrxQJFZWl_0?si=x_GrPDxgijneZW8m"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+## The Reactivity spectrum
+
+There have been many talks and articles about how React isnt't reactive even by <a href="https://legacy.reactjs.org/docs/design-principles.html%23scheduling">their own standard</a>. Angular is further from that. This is why, in order to keep everyone on the same topic, we introduce a spectrum or a dimension of reactivity ranging from coarse to fine-grained. It goes like this:
+
+- Coarse-grained: The framework has to execute a lot of application or framework code to determine which DOM nodes need to be updated.
+- Fine-grained: The framework does not need to execute any code and knows exactly which DOM nodes need to be updated.
+
+There are tradeoffs to each solution between performance and ease of use. I will let you guess which side is preferred by us(webdevs).
+
+## Vue.js
+
+Vue.js quickly gained popularity for its intuitive and efficient reactivity system, which simplified the development process by automatically updating the UI in response to data changes. When you pass a plain JavaScript object to a Vue instance as its data option, Vue.js will walk through all of its properties and convert them to getter/setters using Object.defineProperty.
+The getter/setters are invisible to the user, but under the hood they enable Vue.js to perform dependency-tracking and change-notification when properties are accessed or modified. 
+For every directive / data binding in the template, there will be a corresponding watcher object, which records any properties "touched" during its evaluation as dependencies. Later on when a dependency's setter is called, it triggers the watcher to re-evaluate, and in turn causes its associated directive to perform DOM updates.
+
+import VueJsImage from '~/media/reactivity/vue.png?jsx';
+
+<VueJsImage />
+
+In summary, both Vue.js 1.0 and AngularJS use watchers to respond to data changes. However, they do this in different ways. Vue.js 1.0 relies on dependency tracking, utilizing getters and setters. On the other hand, AngularJS employs a dirty checking. Vue's approach is generally seen as more user-friendly and efficient, particularly when you're dealing with complex applications that have a lot of moving parts and changing data.
+
+## Svelte
+
+Reactivity in Svelte was achieved through reactive assignments. When the state (a variable) of a component was updated, Svelte would automatically re-run the component's code to reflect these changes in the DOM.
+Unlike frameworks like React, Svelte 1.0 didn't use a Virtual DOM. Instead, it compiled components into highly efficient imperative code that directly updated the DOM. This meant that Svelte could make updates very quickly and efficiently.
+Unlike the implicit reactivity model in Vue or React, Svelte required a more explicit approach. Developers had to specifically assign a new value to a variable to trigger reactivity, rather than relying on a reactive system based on proxies or observers.
+
+## Solid.js
+
+Solid.js, in a way, brings us full circle to the early days of reactive frameworks like KnockoutJS, especially through its use of signals for state management. Signals in SolidJS are a pair of getter-setter functions that manage reactive states. When a signal's value is accessed, SolidJS tracks the current function as a dependency. Upon updating the signal, SolidJS efficiently triggers updates only in the functions or components that depend on this changed state. This leads to more targeted and efficient UI updates. The combination of simple reactive primitives and compile-time optimizations in SolidJS makes it highly performant.
+Who has short shorts? I do, here is another one, this time on signals:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/o_DnpmpFNyo?si=GDpFMLvBFIR0uyx-"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+## My website is slow but it's not my fault...
+
+One point of view that I found really interesting was mentioned by Miśko in his <a href="https://frontendmasters.com/courses/javascript-cpu-vm/introduction/">frontendmasters course </a>. The speed of light is roughly 300,000 km/s. The speed of an electrical signal in silicon ranges between 1/3 and 1/10 of the speed of light. Let's say it's 1/5 for simpler calculation. This means that the signal in the CPU travels at 60,000 km/s. To achieve a CPU speed of 3GHz, the signal would need to traverse this distance 3 billion times in a second. This implies that the maximum distance the signal can travel in a CPU is about 1.2cm. Today's CPUs are around 3.5 cm.
+
+import CPUImage from '~/media/reactivity/cpu.png?jsx';
+
+<CPUImage />
+
+To enhance performance, we would either need to make the signal move faster or place the transistors closer together. We are approaching the limit of both. Most advancements in CPU performance over the last decade have come from increasing the number of cores. However, since V8 is single-threaded, we don't benefit from this in the same way.
+
+import CPUSpeedImage from '~/media/reactivity/cpu_speed.jpg?jsx';
+
+<CPUSpeedImage />
+
+This necessity is what's driving big changes in popular frameworks. Svelte is rethinking "Rethinking reactivity", React is evolving towards compilation, Vue Vapor is saying goodbye to the virtual DOM, and Angular is shifting to signals. However, in my opinion, these improvements feel like just a bit of an afterthought. The real competition among frameworks is more about winning over developers than enhancing the end-user experience. The irony? Framework websites often outshine and outperform the sites they help build. In the end, the responsibility falls squarely on you, the developer.
+The bigger irony is this: watching the React documentary, where the "underdogs" had to battle prejudice and an uphill struggle against the community. So much so, that following the initial presentation of React, they refrained from attending conferences for a while. Then, observing the same people posting reactions like this one:
+
+<blockquote class="twitter-tweet">
+  &mdash; Pete Hunt 🚁 (@floydophone){' '}
+  <a href="https://twitter.com/floydophone/status/1629009165422104576?ref_src=twsrc%5Etfw">February 24, 2023</a>
+</blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I can't help but think that many web developers are too caught up in complaining about minor features, while their grasp of how the V8 engine works or how to fine-tune their code is quite limited. Statements like these seem mysterious and frightening:
+
+import EqualsImage from '~/media/reactivity/equals.jpg?jsx';
+
+<EqualsImage />
+
+import Image4 from '~/media/reactivity/polymorphism.jpg?jsx';
+
+<Image4 />
+
+The results from polls like this one shouldn't surprise anyone anymore:
+
+import Image3 from '~/media/reactivity/poll.jpg?jsx';
+
+<Image3 />
+
+This is why react won. This why isOdd npm package has 300k+ downloads. This is why your app <a target="_blank" href="https://www.davidhaney.io/npm-left-pad-have-we-forgotten-how-to-program/">breaks</a> and you can't even begin digging into the problem since it is 10 layers deep into your <a href="https://www.bleepingcomputer.com/news/security/everything-blocks-devs-from-removing-their-own-npm-packages/">3,000+ node_modules</a>
+
+import IsOddImage from '~/media/reactivity/isodd.png?jsx';
+
+<IsOddImage />
+
+## My website is slow and it is my fault…
+
+In summary, I don't aim to take the high moral ground, as I struggle with the same issues myself, but I'm eager to break the cycle. The time to think about performance is always now. As I tried to show we can't expect much help from the runtime. Maybe having a reactivity built-in would eliminate the need of a helper "library" such React (since it is not a framework). The signals proposal for ECMAScript

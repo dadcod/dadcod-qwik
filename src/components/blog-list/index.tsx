@@ -7,7 +7,7 @@ import { component$ } from '@builder.io/qwik';
 export default component$<{ posts: Post[] }>(({ posts }) => {
   return (
     <>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 pb-1">
         {posts.map((post) => (
           <BlogItem key={post.id} item={post} />
         ))}

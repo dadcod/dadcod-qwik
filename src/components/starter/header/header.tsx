@@ -43,6 +43,17 @@ export default component$(() => {
                 </li>
               </>
             ))}
+            <li class="text-base m-0 p-0 text-md uppercase font-bold">
+              <a class="inline-block p-0 no-underline" href={`/cv.html`}>
+                <span class={'animated-button font-extrabold'}>
+                  <span>
+                    {'cv'.split('').map((letter, index) => (
+                      <em key={index}>{letter}</em>
+                    ))}
+                  </span>
+                </span>
+              </a>
+            </li>
           </ul>
         </nav>
 

@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosen Petkov - Staff Engineer CV</title>
+
+  <!-- Tailwind CSS via Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome CSS from CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Fonts (Lato) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- iro.js Color Picker Library via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+  <!-- jsPDF Library via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- html2canvas Library via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    /* Define CSS Variables for Theming */
+    :root {
+      --theme-bg: #ffffff;
+      --theme-side-bg: #ffffff;
+      --theme-text: #4a4a4a;
+      --theme-heading: #d9534f;
+      --theme-accent: #d9534f;
+      --theme-border: #adadad;
+      /* Slightly darker default border */
+      --theme-skill-bg: #f8d7da;
+      --theme-skill-border: #f5c6cb;
+      --theme-skill-text: #721c24;
+      --theme-link-hover: #c9302c;
+      --font-primary: 'Lato', sans-serif;
+      --font-secondary: 'Lato', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      /* Background Image Setup */
+      background-image: url('public/images/resumbe_bg.png');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      background-color: #f4f4f4;
+      /* Fallback color */
+      color: var(--theme-text);
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Overlay for background subtlety */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.68);
+      z-index: -1;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #cv-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    #cv-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--theme-bg);
+      /* Use the theme background color */
+      opacity: 0.65;
+      /* <<< ADJUST THIS VALUE (e.g., 0.95, 0.92, 1.0) */
+      z-index: -1;
+      /* Position behind content */
+      border-radius: inherit;
+      /* Match parent's border-radius (lg) */
+      transition:
+        background-color 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    }
+
+    .left-column,
+    .right-column {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Styling for color picker group */
+    .color-picker-group {
+      margin-bottom: 12px;
+    }
+
+    .color-picker-group .label-input-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .color-picker-group label {
+      font-size: 0.8rem;
+      color: #555;
+      font-family: var(--font-secondary);
+      font-weight: 600;
+    }
+
+    .color-picker-group input[type='text'] {
+      width: 75px;
+      font-size: 0.75rem;
+      padding: 2px 4px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+
+    .picker-container {
+      text-align: center;
+    }
+
+    .theme-transition {
+      transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out;
+    }
+
+    /* Specific styles */
+    .cv-container h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--theme-heading);
+      border-bottom: 2px solid var(--theme-heading);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .left-column h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--theme-heading);
+      border-bottom: 1px solid var(--theme-border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--theme-text);
+    }
+
+    .company-date {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .tech-list {
+      font-size: 0.8rem;
+      color: #777;
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    .skill-bar-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-label {
+      width: 140px;
+      font-size: 0.9rem;
+      padding-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .skill-bar {
+      height: 10px;
+      background-color: var(--theme-heading);
+      border-radius: 5px;
+    }
+
+    .external-link-icon {
+      color: var(--theme-accent);
+      font-size: 0.7em;
+      vertical-align: super;
+      margin-left: 2px;
+    }
+
+    /* Hide controls for printing / PDF generation */
+
+    .print-styles {
+      background-image: none !important;
+      background-color: #fff !important;
+    }
+
+    .print-styles::before {
+      display: none !important;
+    }
+
+    .print-styles #cv-container::before {
+      opacity: 1 !important;
+    }
+
+    .print-styles .cv-container {
+      margin: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      max-width: 100% !important;
+    }
+
+    .print-styles ul li {
+      list-style-type: none !important;
+
+      &:before {
+        content: '• ';
+        margin-left: -1em;
+        margin-top: -0.25rem;
+      }
+    }
+
+    .print-styles #theme-controls,
+    .print-styles #toggle-theme-button,
+    .print-styles #pdf-export-button {
+      display: none !important;
+    }
+
+    .print-styles .controls-hidden {
+      display: none !important;
+    }
+
+    .print-styles .timeline-dot {
+      margin-top: 0.5rem;
+    }
+
+    .print-styles .timeline-line {
+      margin-top: 0.5rem;
+    }
+
+    .print-styles .interest {
+      min-height: 26px;
+    }
+
+    .print-styles .interest>div {
+      margin-top: -10px;
+    }
+  </style>
+</head>
+
+<body class="text-base">
+  <!-- Theme Controls Toggle Button -->
+  <button id="toggle-theme-button"
+    class="theme-transition fixed bottom-4 right-4 z-50 bg-[var(--theme-accent)] text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:opacity-90">
+    <i class="fas fa-palette"></i>
+  </button>
+
+  <!-- Theme Controls Panel -->
+  <div id="theme-controls"
+    class="hidden fixed bottom-20 right-4 z-40 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-4 rounded-lg shadow-xl border border-[var(--theme-border)] dark:border-gray-700 w-64 max-h-[70vh] overflow-y-auto">
+    <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200 text-center"
+      style="font-family: var(--font-secondary)">Customize Theme</h4>
+    <div class="space-y-1">
+      <div class="color-picker-group">
+        <div class="label-input-wrapper">
+          <label for="bg-hex">Main BG</label> <input type="text" id="bg-hex" maxlength="7" />
+        </div>
+        <div id="bg-picker-container" class="picker-container"></div>
+      </div>
+      <div class="color-picker-group">
+        <div class="label-input-wrapper">
+          <label for="side-bg-hex">Sidebar BG</label> <input type="text" id="side-bg-hex" maxlength="7" />
+        </div>
+        <div id="side-bg-picker-container" class="picker-container"></div>
+      </div>
+      <div class="color-picker-group">
+        <div class="label-input-wrapper">
+          <label for="text-hex">Text</label> <input type="text" id="text-hex" maxlength="7" />
+        </div>
+        <div id="text-picker-container" class="picker-container"></div>
+      </div>
+      <div class="color-picker-group">
+        <div class="label-input-wrapper">
+          <label for="heading-hex">Heading/Accent</label> <input type="text" id="heading-hex" maxlength="7" />
+        </div>
+        <div id="heading-picker-container" class="picker-container"></div>
+      </div>
+      <div class="color-picker-group">
+        <div class="label-input-wrapper">
+          <label for="border-hex">Border</label> <input type="text" id="border-hex" maxlength="7" />
+        </div>
+        <div id="border-picker-container" class="picker-container"></div>
+      </div>
+    </div>
+    <button id="reset-theme-button"
+      class="theme-transition w-full mt-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-200 rounded text-sm"
+      style="font-family: var(--font-secondary)">
+      Reset to Defaults
+    </button>
+    <button id="pdf-export-button"
+      class="theme-transition w-full mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"
+      style="font-family: var(--font-secondary)">
+      <i class="fas fa-file-pdf mr-1"></i> Export as PDF
+    </button>
+    <button id="close-theme-button"
+      class="theme-transition w-full mt-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
+      style="font-family: var(--font-secondary)">
+      Close
+    </button>
+  </div>
+
+  <!-- CV Container -->
+  <div id="cv-container"
+    class="theme-transition max-w-screen-lg mx-auto my-8 shadow-2xl rounded-lg overflow-hidden border border-[var(--theme-border)] md:grid md:grid-cols-12">
+    <!-- Left Column -->
+    <div class="left-column md:col-span-4 p-8 border-r border-[var(--theme-border)]">
+      <div class="text-center mb-8">
+        <div
+          class="theme-transition w-36 h-36 object-cover rounded-full mx-auto mb-4 border-4 border-[var(--theme-bg)] shadow-md"
+          style="
+              background-image: url('public/images/avatar.png');
+              background-size: cover;
+              background-position: center;
+            "></div>
+        <h1 class="theme-transition text-3xl font-bold text-gray-800" style="font-family: var(--font-primary)">Rosen
+          Petkov</h1>
+        <h2 class="theme-transition text-lg font-normal text-gray-600" style="font-family: var(--font-secondary)">Staff
+          engineer</h2>
+      </div>
+      <div class="text-sm space-y-2 mb-8" style="font-family: var(--font-secondary)">
+        <p class="flex items-center justify-end">
+          <a href="mailto:rhpetkov@gmail.com"
+            class="theme-transition text-[var(--theme-text)] hover:text-[var(--theme-link-hover)]">rhpetkov@gmail.com</a>
+          <i class="theme-transition fas fa-envelope fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+        <p class="flex items-center justify-end">
+          <a href="tel:+359896629644"
+            class="theme-transition text-[var(--theme-text)] hover:text-[var(--theme-link-hover)]">+359896629644</a>
+          <i class="theme-transition fas fa-phone fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+        <p class="flex items-center justify-end">
+          Sofia
+          <i class="theme-transition fas fa-map-marker-alt fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+        <p class="flex items-center justify-end">
+          <a href="https://dadcod.es/" target="_blank"
+            class="theme-transition text-[var(--theme-text)] hover:text-[var(--theme-link-hover)]">dadcod.es/</a>
+          <i class="theme-transition fas fa-link fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+        <p class="flex items-center justify-end">
+          <a href="https://linkedin.com/in/rosenpetkov" target="_blank"
+            class="theme-transition text-[var(--theme-text)] hover:text-[var(--theme-link-hover)]">linkedin.com/in/rosenpetkov</a>
+          <i class="theme-transition fab fa-linkedin fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+        <p class="flex items-center justify-end">
+          <a href="https://medium.com/@dadcod" target="_blank"
+            class="theme-transition text-[var(--theme-text)] hover:text-[var(--theme-link-hover)]">medium.com/@dadcod</a>
+          <i class="theme-transition fab fa-medium fa-fw w-5 text-center ml-2 text-[var(--theme-heading)]"></i>
+        </p>
+      </div>
+      <section class="mb-8">
+        <p class="text-sm leading-relaxed">
+          Graduated software engineer, with more than 13 years of practical knowledge. Experienced in creating and
+          designing software solutions and integration between different systems. With great desire to help with
+          planning and managing, and resolving impediments in a team.
+        </p>
+      </section>
+      <section class="mb-8">
+        <h3 class="theme-transition">Education</h3>
+        <div class="text-sm space-y-3">
+          <div class="relative">
+            <p class="font-semibold text-[var(--theme-text)] text-base">Bachelor's Degree of Software Engineering</p>
+            <p class="text-gray-700">Sofia University</p>
+            <p class="text-[var(--theme-accent)] text-xs" style="font-family: var(--font-secondary)">2010 - 2014</p>
+          </div>
+        </div>
+      </section>
+      <section class="mb-8">
+        <h3 class="theme-transition">Skills</h3>
+        <div class="space-y-2">
+          <div class="skill-bar-container">
+            <span class="skill-label">AngularJs / Angular</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-container">
+            <span class="skill-label">JavaScript / TypeScript</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-container">
+            <span class="skill-label">.Net Framework</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 70%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-container">
+            <span class="skill-label">Java</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 65%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-container">
+            <span class="skill-label">Scrum</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-container">
+            <span class="skill-label">Presenting technologies</span>
+            <div class="w-full bg-gray-300 rounded-full h-[10px]">
+              <div class="skill-bar" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mb-8">
+        <h3 class="theme-transition">Certificates</h3>
+        <div class="text-sm space-y-2">
+          <p>Disciplined Agile / Scrum in the Real World (2014)</p>
+          <p>Microsoft Programming in C# Specialist (2013)</p>
+          <p>Building Windows 8 Style Applications UsingHTML5 and javascript (2012)</p>
+        </div>
+      </section>
+      <section class="mb-8">
+        <h3 class="theme-transition">Languages</h3>
+        <div class="text-sm space-y-1">
+          <p><strong>English:</strong> Full Professional Proficiency</p>
+          <p><strong>German:</strong> Limited Working Proficiency</p>
+        </div>
+      </section>
+      <section>
+        <h3 class="theme-transition">Interests</h3>
+        <div class="interests flex flex-wrap">
+          <div
+            class="interest theme-transition inline-block bg-gray-300 text-gray-700 border border-gray-400 rounded px-3 py-1 text-xs m-1"
+            style="font-family: var(--font-secondary)">
+            <div>Tennis</div>
+          </div>
+          <div
+            class="interest theme-transition inline-block bg-gray-300 text-gray-700 border border-gray-400 rounded px-3 py-1 text-xs m-1"
+            style="font-family: var(--font-secondary)">
+            <div>Guitar</div>
+          </div>
+          <div
+            class="interest theme-transition inline-block bg-gray-300 text-gray-700 border border-gray-400 rounded px-3 py-1 text-xs m-1"
+            style="font-family: var(--font-secondary)">
+            <div>Tech</div>
+          </div>
+          <div
+            class="interest theme-transition inline-block bg-gray-300 text-gray-700 border border-gray-400 rounded px-3 py-1 text-xs m-1"
+            style="font-family: var(--font-secondary)">
+            <div>Healthy lifestyle</div>
+          </div>
+        </div>
+      </section>
+    </div><!-- End Left Column -->
+
+    <!-- Right Column -->
+    <div class="md:col-span-8 p-8">
+      <section class="mb-10">
+        <h3>Work Experience</h3>
+        <div class="space-y-8">
+          <div class="relative pl-6 timeline-entry">
+            <div
+              class="timeline-dot absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 border-[var(--theme-heading)] bg-white">
+            </div>
+            <div
+              class="timeline-line absolute left-[5px] top-4 w-[2px] h-[calc(100%-1rem)] bg-[var(--theme-heading)] opacity-50">
+            </div>
+            <p class="job-title">Staff Engineer</p>
+            <p class="company-date">
+              Halo Precision Diagnostics
+              <a href="#" class="external-link-icon"><i class="fas fa-external-link-alt"></i></a> | 05/2020 – Present
+            </p>
+            <p class="section-subtitle">Achievements</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mb-2">
+              <li>Led a team to create a new design system.</li>
+              <li>Updated and maintained Angular to its latest version.</li>
+              <li>Managed project structure, logging, and observability.</li>
+            </ul>
+            <p class="tech-list">Technologies: Angular, Typescript, Akita, Java, Spring Stack, K8s, docker</p>
+          </div>
+          <div class="relative pl-6 timeline-entry">
+            <div
+              class="timeline-dot absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 border-[var(--theme-heading)] bg-white">
+            </div>
+            <div
+              class="timeline-line absolute left-[5px] top-4 w-[2px] h-[calc(100%-1rem)] bg-[var(--theme-heading)] opacity-50">
+            </div>
+            <p class="job-title">Senior Developer</p>
+            <p class="company-date">
+              Westernacher Solutions
+              <a href="#" class="external-link-icon"><i class="fas fa-external-link-alt"></i></a> | 03/2018 – 05/2020
+            </p>
+            <p class="text-xs italic text-gray-600 mb-2">Westernacher Solutions is a provider of innovative consulting
+              and IT solutions for the areas of
+              Justice, Notaries, Church and Government.</p>
+            <p class="section-subtitle">Achievements</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mb-2">
+              <li>Worked on a frontend-heavy projects, part of a platform, for the German notary chamber.</li>
+              <li>Being part of an international team.</li>
+              <li>Delivered successfully three projects.</li>
+            </ul>
+            <p class="tech-list">Technologies: Angular, Typescript, NGRX, Java, Spring Stack, JPA, Oracle DB</p>
+          </div>
+          <div class="relative pl-6 timeline-entry">
+            <div
+              class="timeline-dot absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 border-[var(--theme-heading)] bg-white">
+            </div>
+            <div
+              class="timeline-line absolute left-[5px] top-4 w-[2px] h-[calc(100%-1rem)] bg-[var(--theme-heading)] opacity-50">
+            </div>
+            <p class="job-title">Senior Developer</p>
+            <p class="company-date">
+              InterConsult Bulgaria
+              <a href="#" class="external-link-icon"><i class="fas fa-external-link-alt"></i></a> | 05/2012 – 03/2018
+            </p>
+            <p class="section-subtitle">Challenges</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mb-2">
+              <li>Developing modules for web-based platform for monitoring live data from different maritime
+                vessels.</li>
+              <li>Solving problems, involving business processes and integration of different systems.</li>
+              <li>Being part of requirements design process.</li>
+            </ul>
+            <p class="tech-list">Technologies: .Net Framework, WPF, Web API, Azure, AngularJs, MS SQL</p>
+          </div>
+        </div>
+      </section>
+      <section class="mb-10">
+        <h3>Presenting Experience</h3>
+        <div class="space-y-8">
+          <div class="relative pl-6 timeline-entry">
+            <div
+              class="timeline-dot absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 border-[var(--theme-heading)] bg-white">
+            </div>
+            <div
+              class="timeline-line absolute left-[5px] top-4 w-[2px] h-[calc(100%-1rem)] bg-[var(--theme-heading)] opacity-50">
+            </div>
+            <p class="job-title">Student Partner</p>
+            <p class="company-date">Microsoft | 2013 – 2016</p>
+            <p class="section-subtitle">Tasks</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal">
+              <li>Did technical presentations in schools and universities across the country.</li>
+              <li>Organized Machine Learning themed hackathon in2016 in Sofia.</li>
+            </ul>
+          </div>
+          <div class="relative pl-6 timeline-entry">
+            <div
+              class="timeline-dot absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 border-[var(--theme-heading)] bg-white">
+            </div>
+            <div
+              class="timeline-line absolute left-[5px] top-4 w-[2px] h-[calc(100%-1rem)] bg-[var(--theme-heading)] opacity-50">
+            </div>
+            <p class="job-title">Presenter</p>
+            <p class="company-date">jsTalks | 2021 – 2024</p>
+            <p class="section-subtitle">Achievements</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal">
+              <li>Did presentations at jsTalks 3 for years in a row.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>Projects</h3>
+        <div class="space-y-6">
+          <div class="pl-1">
+            <p class="font-semibold text-base text-[var(--theme-text)]">Halo PDaaS (03/2020 - Present)
+              <a href="#" class="external-link-icon"><i class="fas fa-external-link-alt"></i></a>
+            </p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mt-1">
+              <li>Built 4 different angular projects inside an nx monorepo</li>
+              <li>Explored microservices, PWA, design systems</li>
+              <li>Researched rendering strategies and performance optimisations</li>
+            </ul>
+          </div>
+          <div class="pl-1">
+            <p class="font-semibold text-base text-[var(--theme-text)]">XNotar (03/2018)</p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mt-1">
+              <li>Accumulated knowledge of NGRX and Angular Forms.</li>
+            </ul>
+          </div>
+          <div class="pl-1">
+            <p class="font-semibold text-base text-[var(--theme-text)]">K-IMS (09/2016 - 03/2018)
+              <a href="#" class="external-link-icon"><i class="fas fa-external-link-alt"></i></a>
+            </p>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm leading-normal mt-1">
+              <li>Did research on Azure services such as Active Directory B2C and B2B, Application Insights, Machine
+                Learning Studio, Bot Framework.</li>
+              <li>Worked with clients and consultants to develop new requirements.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div><!-- End Right Column -->
+  </div>
+  <!-- End CV Container -->
+
+  <!-- JavaScript -->
+  <script>
+    const {jsPDF} = window.jspdf; // Ensure jsPDF is accessible
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Elements ---
+      const themeControls = document.getElementById('theme-controls');
+      const toggleButton = document.getElementById('toggle-theme-button');
+      const resetButton = document.getElementById('reset-theme-button');
+      const closeButton = document.getElementById('close-theme-button');
+      const pdfExportButton = document.getElementById('pdf-export-button');
+      const cvContainer = document.getElementById('cv-container');
+      const root = document.documentElement;
+
+      // --- Theme Color Logic ---
+      const defaultColors = {
+        '--theme-bg': '#ffffff',
+        '--theme-side-bg': '#ffffff',
+        '--theme-text': '#4a4a4a',
+        '--theme-heading': '#d9534f',
+        '--theme-accent': '#d9534f',
+        '--theme-border': '#adadad',
+      };
+      function adjustColor(hex, percent) {
+        hex = hex.replace('#', '');
+        let r = parseInt(hex.substring(0, 2), 16);
+        let g = parseInt(hex.substring(2, 4), 16);
+        let b = parseInt(hex.substring(4, 6), 16);
+        r = Math.min(255, Math.max(0, Math.round(r * (1 + percent / 100))));
+        g = Math.min(255, Math.max(0, Math.round(g * (1 + percent / 100))));
+        b = Math.min(255, Math.max(0, Math.round(b * (1 + percent / 100))));
+        const rr = r.toString(16).padStart(2, '0');
+        const gg = g.toString(16).padStart(2, '0');
+        const bb = b.toString(16).padStart(2, '0');
+        return `#${rr}${gg}${bb}`;
+      }
+      const colorConfigs = [
+        {idBase: 'bg', cssVar: '--theme-bg'},
+        {idBase: 'side-bg', cssVar: '--theme-side-bg'},
+        {idBase: 'text', cssVar: '--theme-text'},
+        {
+          idBase: 'heading',
+          cssVar: '--theme-heading',
+          derives: [
+            '--theme-accent',
+            '--theme-link-hover',
+            '--theme-skill-text',
+            '--theme-skill-border',
+            '--theme-skill-bg',
+          ],
+        },
+        {idBase: 'border', cssVar: '--theme-border'},
+      ];
+      const pickers = {};
+      const hexInputs = {};
+      const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      function updateCssVariable(cssVar, colorHex) {
+        root.style.setProperty(cssVar, colorHex);
+        if (cssVar === '--theme-heading') {
+          root.style.setProperty('--theme-accent', colorHex);
+          root.style.setProperty('--theme-link-hover', adjustColor(colorHex, -10));
+          root.style.setProperty('--theme-skill-text', adjustColor(colorHex, -40));
+          root.style.setProperty('--theme-skill-border', adjustColor(colorHex, 40));
+          root.style.setProperty('--theme-skill-bg', adjustColor(colorHex, 60));
+        }
+      }
+      colorConfigs.forEach((config) => {
+        const pickerContainerId = `${config.idBase}-picker-container`;
+        const hexInputId = `${config.idBase}-hex`;
+        const pickerContainer = document.getElementById(pickerContainerId);
+        const hexInput = document.getElementById(hexInputId);
+        if (!pickerContainer || !hexInput) return;
+        hexInputs[config.cssVar] = hexInput;
+        const initialColor = getComputedStyle(root).getPropertyValue(config.cssVar).trim();
+        hexInput.value = initialColor;
+        const picker = new iro.ColorPicker(pickerContainer, {
+          width: 90,
+          color: initialColor || '#ffffff',
+          borderWidth: 1,
+          borderColor: '#ccc',
+          layoutDirection: 'vertical',
+          layout: [
+            {component: iro.ui.Wheel, options: {wheelLightness: false, wheelAngle: 270}},
+            {component: iro.ui.Slider, options: {sliderType: 'value'}},
+          ],
+        });
+        picker.on('color:change', (color) => {
+          const currentHex = color.hexString;
+          updateCssVariable(config.cssVar, currentHex);
+          hexInput.value = currentHex;
+        });
+        hexInput.addEventListener('input', () => {
+          const inputValue = hexInput.value;
+          if (hexRegex.test(inputValue)) {
+            picker.color.hexString = inputValue;
+          }
+        });
+        pickers[config.cssVar] = picker;
+      });
+      toggleButton.addEventListener('click', () => themeControls.classList.toggle('hidden'));
+      closeButton.addEventListener('click', () => themeControls.classList.add('hidden'));
+      resetButton.addEventListener('click', () => {
+        colorConfigs.forEach((config) => {
+          const defaultColor = defaultColors[config.cssVar];
+          if (defaultColor) {
+            updateCssVariable(config.cssVar, defaultColor);
+            if (pickers[config.cssVar]) pickers[config.cssVar].color.hexString = defaultColor;
+            if (hexInputs[config.cssVar]) hexInputs[config.cssVar].value = defaultColor;
+          }
+        });
+      });
+      document.addEventListener('click', (event) => {
+        if (
+          !themeControls.contains(event.target) &&
+          !toggleButton.contains(event.target) &&
+          !themeControls.classList.contains('hidden')
+        ) {
+          themeControls.classList.add('hidden');
+        }
+      });
+
+      // --- PDF Export Logic ---
+      pdfExportButton.addEventListener('click', () => {
+        toggleButton.classList.add('controls-hidden');
+        themeControls.classList.add('controls-hidden');
+        pdfExportButton.textContent = 'Generating...';
+        pdfExportButton.disabled = true;
+        cvContainer.scrollTop = 0; // Ensure capture starts from top
+        setTimeout(() => {
+          cvContainer.classList.add('print-styles');
+          html2canvas(cvContainer, {
+            scale: 2.5,
+            useCORS: true,
+            logging: false,
+            width: cvContainer.scrollWidth,
+            height: cvContainer.scrollHeight + 20,
+            windowWidth: cvContainer.scrollWidth,
+            windowHeight: cvContainer.scrollHeight,
+            scrollX: 0,
+            scrollY: 0,
+          })
+            .then((canvas) => {
+              cvContainer.classList.remove('print-styles');
+              const pdf = new jsPDF({orientation: 'p', unit: 'mm', format: 'a4'});
+              const pdfWidth = pdf.internal.pageSize.getWidth();
+              const pdfHeight = pdf.internal.pageSize.getHeight();
+              const imgProps = pdf.getImageProperties(canvas);
+              const imgWidth = imgProps.width;
+              const imgHeight = imgProps.height;
+              const aspectRatio = imgWidth / imgHeight;
+              let finalImgWidth = pdfWidth - 20;
+              let finalImgHeight = finalImgWidth / aspectRatio;
+              if (finalImgHeight > pdfHeight - 20) {
+                finalImgHeight = pdfHeight - 20;
+                finalImgWidth = finalImgHeight * aspectRatio;
+              }
+              const xPos = (pdfWidth - finalImgWidth) / 2;
+              const yPos = 10;
+              pdf.addImage(canvas, 'PNG', xPos, yPos, finalImgWidth, finalImgHeight);
+              pdf.save('Rosen-Petkov-CV.pdf');
+            })
+            .catch((error) => {
+              console.error('Error generating PDF:', error);
+              alert('Sorry, there was an error generating the PDF. Please check the console.');
+            })
+            .finally(() => {
+              toggleButton.classList.remove('controls-hidden');
+              pdfExportButton.textContent = 'Export as PDF';
+              pdfExportButton.disabled = false;
+            });
+        }, 150);
+      });
+    });
+  </script>
+</body>
+
+</html>
